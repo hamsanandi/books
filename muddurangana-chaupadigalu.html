@@ -27,7 +27,7 @@ body {
 .nav-back { padding: 20px 20px 0; font-size: 0.85em; letter-spacing: 0.05em; }
 .nav-back a { color: var(--gold-dim); text-decoration: none; }
 .nav-back a:hover { text-decoration: underline; color: var(--gold); }
-.nav-.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.8em; }
+.nav-back.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.8em; }
 
 /* ── Book Hero Layout ── */
 .book-hero {
@@ -37,14 +37,15 @@ body {
 .cover-gallery { display: flex; gap: 12px; flex-shrink: 0; }
 
 .book-cover {
-  width: 140px; height: 200px; ground: #eee6dc;
+  width: 140px; height: 200px; background: #eee6dc;
   border: 1px solid var(--border-light); border-radius: 6px;
   overflow: hidden; box-shadow: 3px 6px 12px rgba(0,0,0,0.08);
   display: flex; align-items: center; justify-content: center; position: relative;
+  cursor: pointer; /* 🔶 Added to show pointer hand on hover */
 }
 .book-cover img { width: 100%; height: 100%; object-fit: cover; }
 .cover-label {
-  position: absolute; bottom: 0; width: 100%; ground: rgba(26,18,8,0.75);
+  position: absolute; bottom: 0; width: 100%; background: rgba(26,18,8,0.75);
   color: #fff; font-size: 0.65rem; text-align: center; padding: 3px 0;
   font-family: 'Cinzel', serif; letter-spacing: 0.1em;
 }
@@ -67,10 +68,10 @@ body {
   cursor: pointer; font-family: 'EB Garamond', serif; text-decoration: none; transition: all 0.15s;
 }
 .btn.kn-btn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.78rem; }
-.btn-primary { ground: var(--gold); color: #fff; border-color: var(--gold); font-weight: 600; }
-.btn-primary:hover { ground: var(--gold-light); border-color: var(--gold-light); }
-.btn-secondary { ground: #fff; color: var(--text); }
-.btn-secondary:hover { ground: var(--header-bg); }
+.btn-primary { background: var(--gold); color: #fff; border-color: var(--gold); font-weight: 600; }
+.btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
+.btn-secondary { background: #fff; color: var(--text); }
+.btn-secondary:hover { background: var(--header-bg); }
 
 /* ── Section Headings ── */
 .section-heading {
@@ -82,7 +83,7 @@ body {
 /* ── Sample Verses Section ── */
 .sample-section {
   max-width: 580px; margin: 0 auto; padding: 20px;
-  ground: var(--section-bg); border: 1px solid var(--border); border-radius: 8px;
+  background: var(--section-bg); border: 1px solid var(--border); border-radius: 8px;
 }
 .verse-block { text-align: center; margin-bottom: 20px; font-family: 'Noto Serif Kannada', serif; font-size: 1.05rem; line-height: 1.8; }
 .verse-block:last-child { margin-bottom: 0; }
@@ -91,10 +92,10 @@ body {
 /* ── Media Grid Layout ── */
 .media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 20px; }
 .media-card {
-  ground: var(--bg); border: 1px solid var(--border); border-radius: 8px;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
   overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
 }
-.video-container { position: relative; width: 100%; padding-bottom: 56.25%; ground: #000; }
+.video-container { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 .media-info { padding: 12px; }
 .media-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-dim); font-family: 'Cinzel', serif; margin-bottom: 2px; display: block; }
@@ -102,7 +103,7 @@ body {
 .media-title { font-family: 'Noto Serif Kannada', serif; font-size: 0.95rem; font-weight: 600; color: var(--text); }
 
 /* ── Footer ── */
-.section-divider { height: 1px; ground: linear-gradient(90deg, transparent, var(--border), transparent); margin: 48px 20px 0; }
+.section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 48px 20px 0; }
 footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.82em; }
 footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
@@ -115,24 +116,23 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 </head>
 <body>
 
-<div class="nav-" id="nav">
-  <a href="index.html">←  to Books</a>
+<div class="nav-back" id="navBack">
+  <a href="index.html">← Back to Books</a>
 </div>
 
 <section class="book-hero">
   <div class="cover-gallery">
-    <div class="cover-gallery">
-    <div class="book-cover">
+    <a href="covers/muddurangana.jpg" target="_blank" class="book-cover" title="Click to view full front cover">
       <img src="covers/muddurangana.jpg" alt="Front Cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div class="cover-placeholder-text" style="display:none;">ಮುದ್ದುರಂಗನ ಚೌಪದಿಗಳು<br><small>(Front Cover)</small></div>
       <div class="cover-label">Front</div>
-    </div>
-    <div class="book-cover">
+    </a>
+    
+    <a href="covers/mudduranga-back-cover.jpg" target="_blank" class="book-cover" title="Click to view full back cover">
       <img src="covers/mudduranga-back-cover.jpg" alt="Back Cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div class="cover-placeholder-text" style="display:none;">ಮುದ್ದುರಂಗನ ಚೌಪದಿಗಳು<br><small>(Back Cover)</small></div>
       <div class="cover-label">Back</div>
-    </div>
-  </div>
+    </a>
   </div>
 
   <div class="book-details">
@@ -238,14 +238,12 @@ const STR = {
   }
 };
 
-// Listen to parent or local session states if tracking lang profile
 let currentLang = 'en';
 
 function applyLocalization(l) {
   currentLang = l;
   const s = STR[l];
   
-  // Elements Translation Injecting Mapping
   document.getElementById('navBack').querySelector('a').textContent = s.backText;
   document.getElementById('navBack').className = 'nav-back' + (l === 'kn' ? ' kn' : '');
   document.getElementById('bookSynopsis').textContent = s.synopsis;
@@ -260,7 +258,6 @@ function applyLocalization(l) {
   document.getElementById('mediaHeading').textContent = s.mediaHeading;
   document.getElementById('mediaHeading').className = 'section-heading' + (l === 'kn' ? ' kn' : '');
   
-  // Media Labels Updates
   document.getElementById('lblMedia1').textContent = s.lbl1;
   document.getElementById('lblMedia1').className = 'media-label' + (l === 'kn' ? ' kn' : '');
   document.getElementById('lblMedia2').textContent = s.lbl2;
@@ -273,7 +270,6 @@ function applyLocalization(l) {
   document.getElementById('footerEl').textContent = s.footer;
 }
 
-// Check if a language selection parameter was passed via URL (e.g. ?lang=kn)
 const urlParams = new URLSearchParams(window.location.search);
 const langParam = urlParams.get('lang');
 applyLocalization(langParam === 'kn' ? 'kn' : 'en');
