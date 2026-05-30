@@ -89,8 +89,13 @@ body {
 .verse-block:last-child { margin-bottom: 0; }
 .verse-num { font-size: 0.85rem; color: var(--gold-dim); display: block; margin-top: 4px; font-family: 'EB Garamond', serif; }
 
-/* ── Media Grid Layout ── */
-.media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 20px; }
+/* ── Media Grid Layout (Updated to 3 columns) ── */
+.media-grid { 
+  display: grid; 
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 20px; 
+  padding: 0 20px; 
+}
 .media-card {
   background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
   overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
@@ -100,17 +105,21 @@ body {
 .media-info { padding: 12px; }
 .media-label { font-size: 0.7em; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gold-dim); font-family: 'Cinzel', serif; margin-bottom: 2px; display: block; }
 .media-label.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.72rem; text-transform: none; letter-spacing: 0; }
-.media-title { font-family: 'Noto Serif Kannada', serif; font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.media-title { font-family: 'Noto Serif Kannada', serif; font-size: 0.95rem; font-weight: 600; color: var(--text); min-height: 38px; }
 
 /* ── Footer ── */
 .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 48px 20px 0; }
 footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.82em; }
 footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
-@media (max-width: 700px) {
+/* ── Responsive Viewport Adjustments for Videos ── */
+@media (max-width: 768px) {
+  .media-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .book-hero { flex-direction: column; align-items: center; text-align: center; }
-  .media-grid { grid-template-columns: 1fr; gap: 16px; }
   .action-hub { justify-content: center; }
+}
+@media (max-width: 520px) {
+  .media-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -150,10 +159,10 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 <div class="section-heading" id="sampleHeading">Look Inside — Sample Verses</div>
 <section class="sample-section">
   <div class="verse-block">
-ಮಂಚದಿಂದೇಳುತಲಿ ಮನೆಯೊಳಗೆ ಯಾರಿಲ್ಲವೆಂಬುದನು ನೆನೆಯುತ್ತಲಷ್ಟು ಹೊತ್ತು<br>
-ನೆವದ ಕಡುನಿದ್ದೆಯಲ್ಲಿರುವ ಪತಿ ಮೊಗವನ್ನು ತಾನೊಂದೆಸಮ ನೋಡಿದೀ ಕೋಮಲೆ<br>
-ನೆಮ್ಮದಿಯ ತಾಳಿ ಮುತ್ತನ್ನೀಡೆ ಗಲ್ಲವದು ನವಿರೇಳುತಿರುವುದನು ಕಂಡಾಗಲೇ<br>
-ನಾಚಿಕೆಯ ಮೈವೆತ್ತು ತಲೆಯನ್ನು ಬಾಗಿಸಿರೆ ಗಹಗಹಿಸಿ ನಗುನಗುತಲವ ಮುತ್ತನಿಟ್ಟ<br>
+    ಮಂಚದಿಂದೇಳುತಲಿ ಮನೆಯೊಳಗೆ ಯಾರಿಲ್ಲವೆಂಬುದನು ನೆನೆಯುತ್ತಲಷ್ಟು ಹೊತ್ತು<br>
+    ನೆವದ ಕಡುನಿದ್ದೆಯಲ್ಲಿರುವ ಪತಿ ಮೊಗವನ್ನು ತಾನೊಂದೆಸಮ ನೋಡಿದೀ ಕೋಮಲೆ<br>
+    ನೆಮ್ಮದಿಯ ತಾಳಿ ಮುತ್ತನ್ನೀಡೆ ಗಲ್ಲವದು ನವಿರೇಳುತಿರುವುದನು ಕಂಡಾಗಲೇ<br>
+    Naachikeya ಮೈವೆತ್ತು ತಲೆಯನ್ನು ಬಾಗಿಸಿರೆ ಗಹಗಹಿಸಿ ನಗುನಗುತಲವ ಮುತ್ತನಿಟ್ಟ<br>
     <span class="verse-num">— ೧</span>
   </div>
 </section>
@@ -161,31 +170,29 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 <div class="section-heading" id="mediaHeading">Lectures & Media</div>
 <div class="media-grid">
 
-<div class="media-grid">
-
   <div class="media-card">
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/Vu7tXoKd1w8" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/z7yYvO_N5AA" allowfullscreen></iframe>
     </div>
     <div class="media-info">
-      <span class="media-label" id="lblMedia1">Shatavadhani Dr R Ganesh speaks about Amarushataka</span>
-      <div class="media-title">ಅಮರುಶತಕದ ಬಗ್ಗೆ ಶತಾವಧಾನಿ ಡಾ. ಆರ್. ಗಣೇಶ್ ಅವರ ಉಪನ್ಯಾಸ </div>
+      <span class="media-label" id="lblMedia1">Lectures & Media</span>
+      <div class="media-title">SHATAVADHANI DR R GANESH SPEAKS ABOUT AMARUSHATAKA</div>
     </div>
   </div>
 
   <div class="media-card">
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/EvNiDnJT2xI" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/S_I_Mh0Vunw" allowfullscreen></iframe>
     </div>
     <div class="media-info">
-      <span class="media-label" id="lblMedia2">A verse from Amarushataka in Gamaka stle </span>
-      <div class="media-title">ಅಮರುಶತಕ ಪದ್ಯಗಳ ಗಾಯನ ಪ್ರಸ್ತುತಿ</div>
+      <span class="media-label" id="lblMedia2">Lectures & Media</span>
+      <div class="media-title">A VERSE FROM AMARUSHATAKA IN GAMAKA STLE</div>
     </div>
   </div>
 
   <div class="media-card">
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_3" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
     </div>
     <div class="media-info">
       <span class="media-label" id="lblMedia3">Literary Discussion</span>
@@ -195,7 +202,7 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
   <div class="media-card">
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/VIDEO_ID_4" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
     </div>
     <div class="media-info">
       <span class="media-label" id="lblMedia4">Book Review</span>
@@ -203,4 +210,98 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
     </div>
   </div>
 
+  <div class="media-card">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+    </div>
+    <div class="media-info">
+      <span class="media-label" id="lblMedia5">Commentary</span>
+      <div class="media-title">ಹೆಚ್ಚಿನ ವಿವರಣೆ ಮತ್ತು ಉಪನ್ಯಾಸ ಮಾಲೆ</div>
+    </div>
+  </div>
+
+  <div class="media-card">
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+    </div>
+    <div class="media-info">
+      <span class="media-label" id="lblMedia6">Recitation</span>
+      <div class="media-title">ಪದ್ಯ ವಾಚನ ಮತ್ತು ರಂಗ ಕಲ್ಪನೆಗಳು</div>
+    </div>
+  </div>
+
 </div>
+
+<hr class="section-divider">
+<footer id="footerEl">Hosted on GitHub Pages</footer>
+
+<script>
+const STR = {
+  en: {
+    backText: "← Back to Books",
+    synopsis: "A comprehensive metric translation and commentary on Acharya Amaru's evocative Sanskrit verses. This work meticulously renders the classical 'Shringara' nuances into Kannada while preserving the architectural beauty of the original quatrains.",
+    buyText: "Buy on Amazon",
+    grText: "Goodreads Profile",
+    sampleHeading: "Look Inside — Sample Verses",
+    mediaHeading: "Lectures & Media",
+    lbl1: "Lectures & Media", lbl2: "Lectures & Media", 
+    lbl3: "Literary Discussion", lbl4: "Book Review",
+    lbl5: "Commentary", lbl6: "Recitation",
+    footer: "Hosted on GitHub Pages"
+  },
+  kn: {
+    backText: "← ಪುಸ್ತಕಗಳ ಪುಟಕ್ಕೆ",
+    synopsis: "ಅಮರು ಕವಿಯ ಶೃಂಗಾರ ಪ್ರಧಾನ ಸಂಸ್ಕೃತ ಮುಕ್ತಕಗಳಿಗೆ ಛಂದೋಬದ್ಧ ಕನ್ನಡ ಅನುವಾದ ಮತ್ತು ಸವಿಸ್ತಾರವಾದ ವಿವರಣೆ. ಈ ಕೃತಿಯು ಮೂಲ ಶ್ಲೋಕಗಳ ಭಾವಸೌಂದರ್ಯ ಹಾಗೂ ರಚನಾತ್ಮಕ ವಿನ್ಯಾಸವನ್ನು ಕನ್ನಡದ ವಿಶಿಷ್ಟ ಕಾವ್ಯರೂಪದಲ್ಲಿ ಕಟ್ಟಿಕೊಡುತ್ತದೆ.",
+    buyText: "ಅಮೆಜಾನ್‌ನಲ್ಲಿ ಕೊಳ್ಳಿ",
+    grText: "ಗುಡ್‌ರೆಡ್ಸ್ ಪುಟ",
+    sampleHeading: "ಪುಸ್ತಕದ ಒಳನೋಟ — ಆಯ್ದ ಪದ್ಯಗಳು",
+    mediaHeading: "ಉಪನ್ಯಾಸಗಳು ಮತ್ತು ದೃಶ್ಯಾವಳಿಗಳು",
+    lbl1: "ಉಪನ್ಯಾಸ ಮಾಲೆ", lbl2: "ಗಾಯನ ಪ್ರಸ್ತುತಿ", 
+    lbl3: "ಸಾಹಿತ್ಯಿಕ ಸಂವಾದ", lbl4: "ಕೃತಿ ವಿಮರ್ಶೆ",
+    lbl5: "ಹೆಚ್ಚಿನ ವಿವರಣೆ", lbl6: "ಪದ್ಯ ವಾಚನ",
+    footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ"
+  }
+};
+
+let currentLang = 'en';
+
+function applyLocalization(l) {
+  currentLang = l;
+  const s = STR[l];
+  
+  document.getElementById('navBack').querySelector('a').textContent = s.backText;
+  document.getElementById('navBack').className = 'nav-back' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('bookSynopsis').textContent = s.synopsis;
+  document.getElementById('bookSynopsis').className = 'book-synopsis' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('btnBuy').textContent = s.buyText;
+  document.getElementById('btnBuy').className = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnGoodreads').textContent = s.grText;
+  document.getElementById('btnGoodreads').className = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
+  
+  document.getElementById('sampleHeading').textContent = s.sampleHeading;
+  document.getElementById('sampleHeading').className = 'section-heading' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('mediaHeading').textContent = s.mediaHeading;
+  document.getElementById('mediaHeading').className = 'section-heading' + (l === 'kn' ? ' kn' : '');
+  
+  document.getElementById('lblMedia1').textContent = s.lbl1;
+  document.getElementById('lblMedia1').className = 'media-label' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('lblMedia2').textContent = s.lbl2;
+  document.getElementById('lblMedia2').className = 'media-label' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('lblMedia3').textContent = s.lbl3;
+  document.getElementById('lblMedia3').className = 'media-label' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('lblMedia4').textContent = s.lbl4;
+  document.getElementById('lblMedia4').className = 'media-label' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('lblMedia5').textContent = s.lbl5;
+  document.getElementById('lblMedia5').className = 'media-label' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('lblMedia6').textContent = s.lbl6;
+  document.getElementById('lblMedia6').className = 'media-label' + (l === 'kn' ? ' kn' : '');
+  
+  document.getElementById('footerEl').textContent = s.footer;
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const langParam = urlParams.get('lang');
+applyLocalization(langParam === 'kn' ? 'kn' : 'en');
+</script>
+</body>
+</html>
