@@ -253,7 +253,7 @@ const STR = {
   },
   kn: {
     backText: "← ಮುಖ್ಯ ಪುಟ",
-    siteName: "ಪುلسطಕಗಳು", siteNameClass: "site-name kn",
+    siteName: "ಪುಸ್ತಕಗಳು", siteNameClass: "site-name kn",
     tagline: "ಪ್ರಕಟಿತ ಕೃತಿಗಳು",
     taglineClass: "site-tagline kn",
     intro: "ಮುದ್ರಿತ ಪುಸ್ತಕಗಳು ಹಾಗೂ ಇ-ಪುಸ್ತಕಗಳು.",
@@ -261,7 +261,7 @@ const STR = {
     sectionHeading: "ಪ್ರಕಟಣೆಗಳು", sectionHeadingClass: "section-heading kn",
     aboutTitle: "ಲೇಖಕರ ಕುರಿತು", aboutTitleClass: "about-title kn",
     aboutSectionClass: "about-section kn",
-    aboutText: "ರಾಮಪ್ರಸಾದ್ ಕೆ.ವಿ. ಅವರು ಕರ್ನಾಟಕ ಸಂಗೀತ ಮತ್ತು ಕನ್ನಡ ಸಾಹಿತ್ಯ ಪರಂಪರೆಯಲ್ಲಿ ಆಸಕ್ತರಾದ ಗಮಕಿ, ವಾಗ್ಗೇಯಕಾರು, ಅನುವಾದಕ ಮತ್ತು ಲೇಖಕರು. ಈ ತಾಣದಲ್ಲಿ ಅವರ ರಚನೆಗಳು, ಅನುವಾದಗಳು ಮತ್ತು ಬರಹಗಳನ್ನು ಒಟ್ಟುಗೂಡಿಸಲಾಗಿದೆ.",
+    aboutText: "ರಾಮಪ್ರಸಾದ್ ಕೆ.ವಿ. ಅವರು ಕರ್ನಾಟಕ ಸಂಗೀತ ಮತ್ತು ಕನ್ನಡ ಸಾಹಿತ್ಯ ಪರಂಪರೆಯಲ್ಲಿ ಆಸಕ್ತರಾದ ಗಮಕಿ, ವಾಗ್ಗೇಯಕಾರು, ಅನುವಾದಕ ಮತ್ತು ಲೇಖಕರು. ಈ ತಾಣದಲ್ಲಿ ಅವರ রচনাಗಳು, ಅನುವಾದಗಳು ಮತ್ತು ಬರಹಗಳನ್ನು ಒಟ್ಟುಗೂಡಿಸಲಾಗಿದೆ.",
     footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ", footerClass: "kn",
     soon: "ಸದ್ಯದಲ್ಲೇ ಬರಲಿವೆ", soonClass: "soon-badge kn"
   }
@@ -270,14 +270,14 @@ const STR = {
 const BOOKS_DATA = [
   {
     title: "ಹಂಸನಾದ", roman: "Hamsanada",
-    coverImg: "covers/hamsanada.jpg", colorClass: "card-c1", url: "hamsanada.html", live: true,
+    coverImg: "covers/hamsanada-front.jpg", colorClass: "card-c1", url: "hamsanada.html", live: true,
     en: { desc: "A curated anthology of verses translated from Samskrta to Kannada." },
-    kn: { desc: "ಸಂಸ್ಕೃತ ಭಾಷೆಯಿಂದ ಅನುವಾದಿಸಿದ ಆಯ್ದ ಪದ್ಯಗಳ ಸಂಕಲನ." }
+    kn: { desc: "ಸಂಸ್ಕೃತ ಭาಷೆಯಿಂದ ಅನುವಾದಿಸಿದ ಆಯ್ದ ಪದ್ಯಗಳ ಸಂಕಲನ." }
   },
   {
     title: "ಅಮರುಶತಕ", roman: "Amarushataka",
     coverImg: "covers/amarushataka-front.jpg", colorClass: "card-c2", url: "amarushataka.html", live: true,
-    en: { desc: "A comprehensive metric translation of Amaru's one  hundred evocative Sanskrit verses." },
+    en: { desc: "A comprehensive metric translation of Amaru's one hundred evocative Sanskrit verses." },
     kn: { desc: "ಅಮರು ಕವಿಯ ಶೃಂಗಾರ ಪ್ರಧಾನ ಸಂಸ್ಕೃತ ಮುಕ್ತಕಗಳ ಛಂದೋಬದ್ಧ ಕನ್ನಡ ಅನುವಾದ." }
   },
   {
@@ -300,7 +300,6 @@ function buildCard(book, l, s) {
   const card = document.createElement('a');
   card.className = 'card ' + book.colorClass + (book.live ? '' : ' soon');
   
-  // 🔶 Appends the active language code query dynamically to prevent navigation layout breakage
   card.href = book.url + (l === 'kn' ? '?lang=kn' : '');
   
   const descClass = 'card-desc' + (l === 'kn' ? ' kn' : '');
