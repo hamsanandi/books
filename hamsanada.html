@@ -6,86 +6,209 @@
 <title>ಹಂಸನಾದ — Hamsanandi</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Sans+Kannada:wght@400;600&family=Noto+Serif+Kannada:wght@400;600&display=swap" rel="stylesheet">
 <style>
-/* Reusing the exact same CSS for visual continuity */
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 :root {
   --gold: #8b5e1a; --gold-light: #6b4510; --gold-dim: #a0783a;
   --bg: #ffffff; --section-bg: #fdf9f3; --header-bg: #f5ede0;
   --border: #d4c5a9; --border-light: #c0aa88;
   --text: #1a1208; --meta: #8a7055;
-  --c1-base: #095555;
+  --c1-base: #095555; --c1-light: #e6f2f2; --c1-mid: #3d9999;
 }
-body { font-family: 'EB Garamond', serif; background: var(--bg); color: var(--text); max-width: 860px; margin: 0 auto; padding: 0 0 60px; font-size: 16px; line-height: 1.6; }
+
+body {
+  font-family: 'EB Garamond', serif;
+  background: var(--bg); color: var(--text);
+  max-width: 860px; margin: 0 auto;
+  padding: 0 0 60px; font-size: 16px; line-height: 1.6;
+}
+
+/* ── Navigation ── */
 .nav-back { padding: 20px 20px 0; font-size: 0.85em; letter-spacing: 0.05em; }
 .nav-back a { color: var(--gold-dim); text-decoration: none; }
 .nav-back a:hover { text-decoration: underline; color: var(--gold); }
-.book-hero { display: flex; gap: 32px; padding: 30px 20px; border-bottom: 1px solid var(--border); margin-bottom: 24px; }
+.nav-back.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.8em; }
+
+/* ── Book Hero Layout ── */
+.book-hero {
+  display: flex; gap: 32px; padding: 30px 20px;
+  border-bottom: 1px solid var(--border); margin-bottom: 24px;
+}
 .cover-gallery { display: flex; gap: 12px; flex-shrink: 0; }
-.book-cover { width: 140px; height: 200px; background: #eee6dc; border: 1px solid var(--border-light); border-radius: 6px; overflow: hidden; box-shadow: 3px 6px 12px rgba(0,0,0,0.08); display: flex; align-items: center; justify-content: center; position: relative; }
-.cover-label { position: absolute; bottom: 0; width: 100%; background: rgba(26,18,8,0.75); color: #fff; font-size: 0.65rem; text-align: center; padding: 3px 0; font-family: 'Cinzel', serif; }
-.cover-placeholder-text { font-family: 'Noto Serif Kannada', serif; font-size: 0.85rem; color: var(--meta); text-align: center; padding: 10px; }
+
+.book-cover {
+  width: 140px; height: 200px; background: #eee6dc;
+  border: 1px solid var(--border-light); border-radius: 6px;
+  overflow: hidden; box-shadow: 3px 6px 12px rgba(0,0,0,0.08);
+  display: flex; align-items: center; justify-content: center; position: relative;
+  cursor: pointer;
+}
+.book-cover img { width: 100%; height: 100%; object-fit: cover; }
+.cover-label {
+  position: absolute; bottom: 0; width: 100%; background: rgba(26,18,8,0.75);
+  color: #fff; font-size: 0.65rem; text-align: center; padding: 3px 0;
+  font-family: 'Cinzel', serif; letter-spacing: 0.1em;
+}
+.book-cover-placeholder-text {
+  font-family: 'Noto Serif Kannada', serif; font-size: 0.85rem;
+  color: var(--meta); text-align: center; padding: 10px; line-height: 1.3;
+}
+
 .book-details { flex-grow: 1; }
-.book-title { font-family: 'Noto Serif Kannada', serif; font-size: 1.8rem; color: var(--gold-light); font-weight: 600; }
+.book-title { font-family: 'Noto Serif Kannada', serif; font-size: 1.8rem; color: var(--c1-base); font-weight: 600; }
 .book-roman { font-family: 'EB Garamond', serif; font-size: 1.05rem; font-style: italic; color: var(--meta); margin-bottom: 12px; display: block; }
 .book-synopsis { font-size: 0.98em; line-height: 1.6; color: var(--text); margin-bottom: 16px; }
 .book-synopsis.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.88rem; }
+
+/* ── Action Buttons ── */
 .action-hub { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 14px; }
-.btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; font-size: 0.85em; border: 1px solid var(--border-light); border-radius: 4px; cursor: pointer; text-decoration: none; transition: all 0.15s; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px;
+  font-size: 0.85em; border: 1px solid var(--border-light); border-radius: 4px;
+  cursor: pointer; font-family: 'EB Garamond', serif; text-decoration: none; transition: all 0.15s;
+}
+.btn.kn-btn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.78rem; }
 .btn-primary { background: var(--gold); color: #fff; border-color: var(--gold); font-weight: 600; }
+.btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
 .btn-secondary { background: #fff; color: var(--text); border: 1px solid var(--border-light); }
-.section-heading { font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--meta); text-align: center; margin: 36px 0 16px; }
-.sample-section { max-width: 580px; margin: 0 auto; padding: 20px; background: var(--section-bg); border: 1px solid var(--border); border-radius: 8px; }
-.verse-block { text-align: center; margin-bottom: 20px; font-family: 'Noto Serif Kannada', serif; font-size: 1.05rem; line-height: 1.8; }
-.media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 20px; }
-.media-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-.video-container { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; }
-.video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
-.media-info { padding: 12px; }
-.media-title { font-family: 'Noto Serif Kannada', serif; font-size: 0.95rem; font-weight: 600; }
+.btn-secondary:hover { background: var(--header-bg); }
+
+/* ── Section Headings ── */
+.section-heading {
+  font-family: 'Cinzel', serif; font-size: 0.7rem; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--meta); text-align: center; margin: 36px 0 16px;
+}
+.section-heading.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.88rem; letter-spacing: 0.05em; text-transform: none; }
+
+/* ── Content Section (Look Inside) ── */
+.sample-section {
+  max-width: 580px; margin: 0 auto; padding: 25px;
+  background: var(--section-bg); border: 1px solid var(--border); border-radius: 8px;
+}
+.verse-block { text-align: center; font-family: 'Noto Serif Kannada', serif; font-size: 1.05rem; line-height: 1.8; width: 100%; }
+.sanskrit-title { font-size: 0.85rem; color: var(--gold-dim); display: block; margin: 14px 0 4px; font-family: 'Noto Sans Kannada', sans-serif; font-weight: 600; }
+.sanskrit-text { font-family: 'Noto Serif Kannada', serif; font-size: 0.98rem; color: var(--meta); font-style: normal; line-height: 1.7; display: block; }
+
+/* ── Footer ── */
+.section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 48px 20px 0; }
 footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.82em; }
-@media (max-width: 700px) { .book-hero { flex-direction: column; align-items: center; text-align: center; } .media-grid { grid-template-columns: 1fr; } }
+
+@media (max-width: 700px) {
+  .book-hero { flex-direction: column; align-items: center; text-align: center; }
+  .action-hub { justify-content: center; }
+}
 </style>
 </head>
 <body>
-<div class="nav-back"><a href="index.html">← Back to Books</a></div>
+
+<div class="nav-back" id="navBack">
+  <a href="index.html">← Back to Books</a>
+</div>
+
 <section class="book-hero">
   <div class="cover-gallery">
-    <div class="book-cover"><div class="cover-placeholder-text">ಹಂಸನಾದ<br><small>(Front)</small></div><div class="cover-label">Front</div></div>
-    <div class="book-cover"><div class="cover-placeholder-text">ಹಂಸನಾದ<br><small>(Back)</small></div><div class="cover-label">Back</div></div>
+    <a href="covers/hamsanada-front.jpg" target="_blank" class="book-cover" title="View Full Front Cover">
+      <img src="covers/hamsanada-front.jpg" alt="Front Cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <div class="book-cover-placeholder-text" style="display:none;">ಹಂಸನಾದ<br><small>(Front)</small></div>
+      <div class="cover-label">Front</div>
+    </a>
+    
+    <a href="covers/hamsanada-back.jpg" target="_blank" class="book-cover" title="View Full Back Cover">
+      <img src="covers/hamsanada-back.jpg" alt="Back Cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+      <div class="book-cover-placeholder-text" style="display:none;">ಹಂಸನಾದ<br><small>(Back)</small></div>
+      <div class="cover-label">Back</div>
+    </a>
   </div>
+
   <div class="book-details">
-    <h1 class="book-title">ಹಂಸನಾದ</h1>
+    <h1 class="book-title" id="bookTitle">ಹಂಸನಾದ</h1>
     <span class="book-roman">Hamsanada</span>
     <p class="book-synopsis" id="bookSynopsis">A curated anthology of reflective verses and compositions grounded in the spiritual traditions of India. This collection explores the nuances of devotion and philosophical inquiry through classical metric structures.</p>
-    <div class="action-hub">
-      <a href="#" class="btn btn-primary">Buy on Amazon</a>
-      <a href="#" class="btn btn-secondary">Goodreads</a>
+    
+    <div class="action-hub" id="actionHub">
+      <a href="https://www.totalkannada.com/products/6661597a-89e7-44df-8ed4-dae3c9881594.html" target="_blank" class="btn btn-primary" id="btnTotalKannada">Buy on TotalKannada</a>
+      <a href="https://www.flipkart.com/hamsanaada/p/itmd2adqby62g9cx" target="_blank" class="btn btn-secondary" id="btnFlipkart">Buy on Flipkart</a>
+      <a href="https://www.goodreads.com/book/show/59742166" target="_blank" class="btn btn-secondary" id="btnGoodreads">Goodreads</a>
     </div>
   </div>
 </section>
 
-<div class="section-heading">Look Inside</div>
+<div class="section-heading" id="sampleHeading">Look Inside — Sample Verses</div>
 <section class="sample-section">
   <div class="verse-block">
-    ಹಂಸನಾದದ ಇಂಚರವನು ಸವಿಯಬನ್ನಿರಿ ಇಲ್ಲಿಗೆ<br>
-    ಸಂಸೃತಿಯ ಸಿರಿ ಸಂಸ್ಕೃತಿಯ ಹೊನಲುಕ್ಕಿ ಹರಿವದೆ ಹಲ್ಲಿಗೆ<br>
-    ದಿವ್ಯ ಭಾವದ ಝೇಂಕಾರವು ಮಧುರವನಿತು ಕಿವಿಗೆ<br>
-    ಕಾವ್ಯ ಸುಧೆಯ ರಸಧಾರೆಯು ತಣಿಸಲಿ ನಮ್ಮ ಮತಿಗಳನು<br>
-    <span style="font-size:0.8em; color:var(--meta);">— ಹಂಸನಾದ</span>
+    ಕಿರಿಯರಾದರೇನು? ನೆರವಾದಾರು;<br>
+    ಹಿರಿಯರಿಂದಾಗದಿದ್ದರೆ ಏನು?<br>
+    ದಾಹವಾರಿಸಲು ಆಗದು ಕಡಲಿಗೆ<br>
+    ಬಾವಿನೀರದನು ತಣಿಸದೇನು?<br>
+    
+    <span class="sanskrit-title">ಸಂಸ್ಕೃತ ಮೂಲ:</span>
+    <span class="sanskrit-text">
+      ಉಪಕರ್ತುಂ ಯಥಾ ಸ್ವಲ್ಪಃ ಸಮರ್ಥಾ ನ ತಥಾ ಮಹಾನ್ ।<br>
+      ಪ್ರಾಯಃ ಕೂಪಸ್ತೃಷಾಂ ಹಂತಿ ನ ಕದಾಪಿ ತು ವಾರಿಧಿಃ ॥
+    </span>
+    <br>
+    <span class="sanskrit-text" style="font-family: serif;">
+      उपकरतुं यथा स्वल्पः समर्थो न तथा महान् ।<br>
+      प्रायಃ कूपस्तृषां हन्ति न कदापि तु वारिधिः ॥
+    </span>
   </div>
 </section>
 
-<div class="section-heading">Performances & Reviews</div>
-<div class="media-grid">
-  <div class="media-card">
-    <div class="video-container"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe></div>
-    <div class="media-info"><div class="media-title">ಗಾಯನ ಪ್ರಸ್ತುತಿ</div></div>
-  </div>
-  <div class="media-card">
-    <div class="video-container"><iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe></div>
-    <div class="media-info"><div class="media-title">ಕೃತಿ ವಿಶ್ಲೇಷಣೆ</div></div>
-  </div>
-</div>
-<footer>Hosted on GitHub Pages</footer>
+<hr class="section-divider">
+<footer id="footerEl">Hosted on GitHub Pages</footer>
+
+<script>
+const STR = {
+  en: {
+    backText: "← Back to Books",
+    synopsis: "A curated anthology of reflective verses and compositions grounded in the spiritual traditions of India. This collection explores the nuances of devotion and philosophical inquiry through classical metric structures.",
+    btnTotal: "Buy on TotalKannada",
+    btnFlip: "Buy on Flipkart",
+    grText: "Goodreads",
+    sampleHeading: "Look Inside — Sample Verses",
+    footer: "Hosted on GitHub Pages"
+  },
+  kn: {
+    backText: "← ಪುಸ್ತಕಗಳ ಪುಟಕ್ಕೆ",
+    synopsis: "ಭಾರತೀಯ ಆಧ್ಯಾತ್ಮಿಕ ಮತ್ತು ಕಾವ್ಯ ಪರಂಪರೆಯ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಮೂಡಿಬಂದ ಆಯ್ದ ಭಕ್ತಿಪ್ರಧಾನ ಕೃತಿಗಳು ಮತ್ತು ತತ್ವಚಿಂತನೆಯ ಮುಕ್ತಕಗಳ ಸಂಕಲನ. ಶಾಸ್ತ್ರೀಯ ಛಂದೋರೂಪಗಳಲ್ಲಿ ಕಾವ್ಯದ ಸೌಂದರ್ಯವನ್ನು ಇಲ್ಲಿ ಅನ್ವೇಷಿಸಲಾಗಿದೆ.",
+    btnTotal: "ಟೋಟಲ್ ಕನ್ನಡದಲ್ಲಿ ಕೊಳ್ಳಿ",
+    btnFlip: "ಫ್ಲಿಪ್‌ಕಾರ್ಟ್‌ನಲ್ಲಿ ಕೊಳ್ಳಿ",
+    grText: "ಗುಡ್‌ರೀಡ್ಸ್ ಪುಟ",
+    sampleHeading: "ಪುಸ್ತಕದ ಒಳನೋಟ — ಆಯ್ದ ಪದ್ಯಗಳು",
+    footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ"
+  }
+};
+
+function applyLocalization(l) {
+  const langKey = (l === 'kn' || l === 'en') ? l : 'en';
+  const s = STR[langKey];
+  
+  document.getElementById('navBack').querySelector('a').textContent = s.backText;
+  document.getElementById('navBack').className = 'nav-back' + (langKey === 'kn' ? ' kn' : '');
+  
+  document.getElementById('bookSynopsis').textContent = s.synopsis;
+  document.getElementById('bookSynopsis').className = 'book-synopsis' + (langKey === 'kn' ? ' kn' : '');
+  
+  document.getElementById('btnTotalKannada').textContent = s.btnTotal;
+  document.getElementById('btnTotalKannada').className = 'btn btn-primary' + (langKey === 'kn' ? ' kn-btn' : '');
+  
+  document.getElementById('btnFlipkart').textContent = s.btnFlip;
+  document.getElementById('btnFlipkart').className = 'btn btn-secondary' + (langKey === 'kn' ? ' kn-btn' : '');
+  
+  document.getElementById('btnGoodreads').textContent = s.grText;
+  document.getElementById('btnGoodreads').className = 'btn btn-secondary' + (langKey === 'kn' ? ' kn-btn' : '');
+  
+  document.getElementById('sampleHeading').textContent = s.sampleHeading;
+  document.getElementById('sampleHeading').className = 'section-heading' + (langKey === 'kn' ? ' kn' : '');
+  
+  document.getElementById('footerEl').textContent = s.footer;
+}
+
+const urlParams = new URLSearchParams(window.location.search);
+const langParam = urlParams.get('lang');
+const sanitizedLang = langParam ? langParam.toLowerCase() : 'en';
+
+applyLocalization(sanitizedLang);
+</script>
 </body>
 </html>
