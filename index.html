@@ -17,7 +17,7 @@
   --c1-base: #095555; --c1-mid: #3d9999;
   --c2-base: #6e2510; --c2-mid: #b05c40;
   --c4-base: #1d4f2b; --c4-mid: #4d9963;
-  --c5-base: #7a1f4a; --c5-mid: #c4608f;
+  --c5-base: #7a1f4a; --c5-mid: #9e3d6e;
 }
 
 body {
@@ -253,7 +253,7 @@ const STR = {
   },
   kn: {
     backText: "← ಮುಖ್ಯ ಪುಟ",
-    siteName: "ಪುಸ್ತಕಗಳು", siteNameClass: "site-name kn",
+    siteName: "ಪುلسطಕಗಳು", siteNameClass: "site-name kn",
     tagline: "ಪ್ರಕಟಿತ ಕೃತಿಗಳು",
     taglineClass: "site-tagline kn",
     intro: "ಮುದ್ರಿತ ಪುಸ್ತಕಗಳು ಹಾಗೂ ಇ-ಪುಸ್ತಕಗಳು.",
@@ -299,11 +299,12 @@ let lang = 'en';
 function buildCard(book, l, s) {
   const card = document.createElement('a');
   card.className = 'card ' + book.colorClass + (book.live ? '' : ' soon');
-  card.href = book.url;
+  
+  // 🔶 Appends the active language code query dynamically to prevent navigation layout breakage
+  card.href = book.url + (l === 'kn' ? '?lang=kn' : '');
   
   const descClass = 'card-desc' + (l === 'kn' ? ' kn' : '');
   
-  // Checks if coverImg exists, else draws a fallback placeholder frame
   const coverHTML = book.coverImg 
     ? `<div class="book-cover-wrap"><img src="${book.coverImg}" alt="${book.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="cover-placeholder" style="display:none;">${book.title}</div></div>`
     : `<div class="book-cover-wrap"><div class="cover-placeholder">${book.title}</div></div>`;
