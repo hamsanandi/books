@@ -165,28 +165,34 @@ const STR = {
 };
 
 function applyLocalization(l) {
-  const s = STR[l];
+  // Fallback to English if no valid language key matches
+  const langKey = (l === 'kn' || l === 'en') ? l : 'en';
+  const s = STR[langKey];
+  
   document.getElementById('navBack').querySelector('a').textContent = s.backText;
-  document.getElementById('navBack').className = 'nav-back' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('navBack').className = 'nav-back' + (langKey === 'kn' ? ' kn' : '');
   
   document.getElementById('bookSynopsis').textContent = s.synopsis;
-  document.getElementById('bookSynopsis').className = 'book-synopsis' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('bookSynopsis').className = 'book-synopsis' + (langKey === 'kn' ? ' kn' : '');
   
   document.getElementById('btnBuy').textContent = s.buyText;
-  document.getElementById('btnBuy').className = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnBuy').className = 'btn btn-primary' + (langKey === 'kn' ? ' kn-btn' : '');
   
   document.getElementById('btnGoodreads').textContent = s.grText;
-  document.getElementById('btnGoodreads').className = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnGoodreads').className = 'btn btn-secondary' + (langKey === 'kn' ? ' kn-btn' : '');
   
   document.getElementById('excerptHeading').textContent = s.excerptHeading;
-  document.getElementById('excerptHeading').className = 'section-heading' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('excerptHeading').className = 'section-heading' + (langKey === 'kn' ? ' kn' : '');
   
   document.getElementById('footerEl').textContent = s.footer;
 }
 
+// Extract parameter and force it to completely lowercase to prevent casing errors
 const urlParams = new URLSearchParams(window.location.search);
 const langParam = urlParams.get('lang');
-applyLocalization(langParam === 'kn' ? 'kn' : 'en');
+const sanitizedLang = langParam ? langParam.toLowerCase() : 'en';
+
+applyLocalization(sanitizedLang);
 </script>
 </body>
 </html>
