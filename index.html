@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="en" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,17 +27,22 @@ body {
   padding: 0 0 60px; font-size: 16px; line-height: 1.6;
 }
 
-/* ── Nav Breadcrumb ── */
-.nav-back {
-  padding: 20px 20px 0; font-size: 0.85em; letter-spacing: 0.05em;
-}
-.nav-back a { color: var(--gold-dim); text-decoration: none; }
-.nav-back a:hover { text-decoration: underline; color: var(--gold); }
-.nav-back.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.8em; }
+/* ── Top nav bar ── */
+.site-nav { background: var(--header-bg); border-bottom: 1px solid var(--border); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 42px; position: sticky; top: 0; z-index: 100; }
+.nav-home { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--gold); text-decoration: none; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+.nav-home.kn { font-family: 'Noto Serif Kannada', serif; letter-spacing: 0.05em; text-transform: none; font-size: 0.88rem; }
+.nav-home:hover { text-decoration: underline; }
+.nav-links { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link { font-family: 'EB Garamond', serif; font-size: 0.78rem; color: var(--meta); text-decoration: none; padding: 0 10px; line-height: 42px; white-space: nowrap; border-left: 1px solid var(--border); transition: color 0.15s, background 0.15s; }
+.nav-link:first-child { border-left: none; }
+.nav-link:hover { color: var(--gold); background: rgba(139,94,26,0.06); }
+.nav-link.active-section { color: var(--gold); font-weight: 600; }
+.nav-link.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.72rem; }
 
-/* ── Header ── */
+/* ── Page header ── */
 .page-header {
-  text-align: center; padding: 25px 20px 28px;
+  text-align: center; padding: 36px 20px 24px;
   border-bottom: 1px solid var(--border); position: relative;
 }
 .page-header::after {
@@ -45,16 +50,15 @@ body {
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
   position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
 }
-.site-name {
-  font-family: 'Cinzel', serif; font-size: 2rem;
-  letter-spacing: 0.25em; color: var(--gold); text-transform: uppercase;
+.page-title {
+  font-family: 'Cinzel', serif; font-size: 1.5rem;
+  letter-spacing: 0.22em; color: var(--gold); text-transform: uppercase;
 }
-.site-name.kn {
-  font-family: 'Noto Serif Kannada', serif; letter-spacing: 0.06em;
-  text-transform: none; font-size: 1.9rem;
+.page-title.kn {
+  font-family: 'Noto Serif Kannada', serif; letter-spacing: 0.05em; text-transform: none;
 }
-.site-tagline { font-size: 0.95em; color: var(--gold-dim); margin-top: 8px; font-style: italic; }
-.site-tagline.kn { font-family: 'Noto Sans Kannada', sans-serif; font-style: normal; }
+.page-subtitle { font-size: 0.95em; color: var(--gold-dim); margin-top: 6px; font-style: italic; }
+.page-subtitle.kn { font-family: 'Noto Sans Kannada', sans-serif; font-style: normal; }
 
 /* ── Lang toggle ── */
 .lang-toggle {
@@ -89,7 +93,7 @@ body {
   letter-spacing: 0.05em; text-transform: none;
 }
 
-/* ── 2x2 Books Grid ── */
+/* ── 2×2 Books grid ── */
 .books-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -97,7 +101,7 @@ body {
   padding: 0 20px;
 }
 
-/* ── Card Styles ── */
+/* ── Card ── */
 .card {
   display: block; text-decoration: none;
   background: var(--section-bg); border: 1px solid var(--border);
@@ -111,17 +115,15 @@ body {
 .card-accent { height: 5px; width: 100%; display: block; }
 .card-body { padding: 22px; display: flex; gap: 18px; align-items: flex-start; }
 
-/* ── Vertical Book Cover Container ── */
+/* ── Book cover ── */
 .book-cover-wrap {
   width: 90px; height: 130px;
   background: #eee6dc; border: 1px solid var(--border-light);
   border-radius: 4px; flex-shrink: 0; overflow: hidden;
   display: flex; align-items: center; justify-content: center;
-  box-shadow: 2px 4px 8px rgba(0,0,0,0.06); position: relative;
+  box-shadow: 2px 4px 8px rgba(0,0,0,0.06);
 }
-.book-cover-wrap img {
-  width: 100%; height: 100%; object-fit: cover; display: block;
-}
+.book-cover-wrap img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .cover-placeholder {
   font-family: 'Cinzel', serif; font-size: 0.55rem; color: var(--meta);
   text-align: center; padding: 4px; font-weight: 600; letter-spacing: 0.05em;
@@ -148,22 +150,22 @@ body {
 }
 .card:hover .card-arrow { color: var(--gold); transform: translateX(3px); }
 
-/* Color Profiles */
+/* ── Per-card colour profiles ── */
 .card-c1 .card-accent { background: var(--c1-base); }
-.card-c1 .card-title { color: var(--c1-base); }
-.card-c1:hover { border-color: var(--c1-mid); }
+.card-c1 .card-title  { color: var(--c1-base); }
+.card-c1:hover        { border-color: var(--c1-mid); }
 
 .card-c2 .card-accent { background: var(--c2-base); }
-.card-c2 .card-title { color: var(--c2-base); }
-.card-c2:hover { border-color: var(--c2-mid); }
+.card-c2 .card-title  { color: var(--c2-base); }
+.card-c2:hover        { border-color: var(--c2-mid); }
 
 .card-c4 .card-accent { background: var(--c4-base); }
-.card-c4 .card-title { color: var(--c4-base); }
-.card-c4:hover { border-color: var(--c4-mid); }
+.card-c4 .card-title  { color: var(--c4-base); }
+.card-c4:hover        { border-color: var(--c4-mid); }
 
 .card-c5 .card-accent { background: var(--c5-base); }
-.card-c5 .card-title { color: var(--c5-base); }
-.card-c5:hover { border-color: var(--c5-mid); }
+.card-c5 .card-title  { color: var(--c5-base); }
+.card-c5:hover        { border-color: var(--c5-mid); }
 
 /* ── Coming soon badge ── */
 .soon-badge {
@@ -194,34 +196,44 @@ body {
 }
 a { color: var(--gold-light); text-decoration: none; }
 a:hover { text-decoration: underline; }
-footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.82em; }
+
+/* ── Footer ── */
+footer { text-align: center; color: var(--meta); margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); font-size: 0.80em; padding-left: 20px; padding-right: 20px; }
 footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
-/* ── Responsive Viewport Adjustments ── */
+/* ── Responsive ── */
 @media (max-width: 680px) {
   .books-grid { grid-template-columns: 1fr; gap: 16px; }
   .card-body { padding: 18px; }
+  .site-nav { flex-wrap: wrap; padding: 8px 12px; min-height: unset; }
+  .nav-home { width: 100%; padding-bottom: 6px; line-height: 1.4; }
+  .nav-links { width: 100%; overflow-x: auto; }
+  .nav-link { font-size: 0.72rem; padding: 0 8px; line-height: 32px; }
+  .lang-toggle { position: static; margin: 12px auto 0; }
+  .page-header { padding: 24px 20px 20px; }
 }
 </style>
 </head>
 <body>
 
-<div class="nav-back" id="navBack">
-  <a href="https://hamsanandi.github.io/">← Home</a>
-</div>
+<!-- ── Sticky nav bar ── -->
+<nav class="site-nav" id="siteNav" aria-label="Site navigation">
+  <a class="nav-home" id="navHome" href="https://hamsanandi.github.io/">Hamsanandi</a>
+  <div class="nav-links" id="navLinks"></div>
+</nav>
 
 <div class="page-header">
   <div class="lang-toggle" id="langToggle">
     <button class="lang-btn active" id="btnEN">EN</button>
     <button class="lang-btn kn-btn" id="btnKN">ಕನ್ನಡ</button>
   </div>
-  <div class="site-name" id="siteName">Books</div>
-  <div class="site-tagline en" id="siteTagline">Published literary titles and translated works</div>
+  <div class="page-title" id="pageTitle">Books</div>
+  <div class="page-subtitle" id="pageSubtitle">Published literary titles and translated works</div>
 </div>
 
-<p class="intro" id="introText">A compilation of my printed editions and ebooks in Kannada.</p>
+<p class="intro" id="introText">My published Kannada books.</p>
 
-<div class="section-heading" id="sectionHeading"> ನನ್ನ ಕನ್ನಡ ಪುಸ್ತಕಗಳು </div>
+<div class="section-heading" id="sectionHeading">Published &amp; Upcoming Volumes</div>
 
 <div id="booksGrid" class="books-grid"></div>
 
@@ -229,85 +241,152 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
 <section class="about-section" id="aboutSection">
   <div class="about-title" id="aboutTitle">About the Author</div>
-  <p id="aboutText">Ramaprasad KV is a vaggeyakara, translator, and author working within the Karnataka Sangeeta and Kannada literary traditions. This site brings together his original compositions, translations, and writings.</p>
-  <p style="margin-top:10px;">Instagram: <a href="https://www.instagram.com/hamsanandi" target="_blank">@hamsanandi</a></p>
+  <p id="aboutText">Ramaprasad KV is a vaggeyakara, translator, and author working within the Karnataka Sangeeta and Kannada literary traditions.</p>
+  <p style="margin-top:10px;"><a href="https://hamsanandi.github.io/#aboutSection">Read more ›</a> &nbsp;·&nbsp; Instagram: <a href="https://www.instagram.com/hamsanandi" target="_blank">@hamsanandi</a></p>
 </section>
 
 <footer id="footerEl">Hosted on GitHub Pages</footer>
 
 <script>
+/* ═══════════════════════════════════════════════════════════════
+   BILINGUAL UI STRINGS
+   ═══════════════════════════════════════════════════════════════ */
 const STR = {
   en: {
-    backText: "← Home",
-    siteName: "Books", siteNameClass: "site-name",
-    tagline: "Published literary titles and translated works",
-    taglineClass: "site-tagline en",
+    navHome: "Hamsanandi", navHomeClass: "nav-home",
+    pageTitle: "Books", pageTitleClass: "page-title",
+    pageSubtitle: "Published literary titles and translated works",
+    pageSubtitleClass: "page-subtitle",
     intro: "My published Kannada books.",
     introClass: "intro",
-    sectionHeading: "Published & Upcoming Volumes", sectionHeadingClass: "section-heading",
+    sectionHeading: "Published & Upcoming Volumes",
+    sectionHeadingClass: "section-heading",
     aboutTitle: "About the Author", aboutTitleClass: "about-title",
     aboutSectionClass: "about-section",
-    aboutText: "Ramaprasad KV is a vaggeyakara, translator, and author working within the Karnataka Sangeeta and Kannada literary traditions. This site brings together his original compositions, translations, and writings.",
+    aboutText: "Ramaprasad KV is a vaggeyakara, translator, and author working within the Karnataka Sangeeta and Kannada literary traditions.",
     footer: "Hosted on GitHub Pages", footerClass: "",
     soon: "Coming soon", soonClass: "soon-badge"
   },
   kn: {
-    backText: "← ಮುಖ್ಯ ಪುಟ",
-    siteName: "ಪುಸ್ತಕಗಳು", siteNameClass: "site-name kn",
-    tagline: "ಪ್ರಕಟಿತ ಕೃತಿಗಳು",
-    taglineClass: "site-tagline kn",
+    navHome: "ಹಂಸಾನಂದಿ", navHomeClass: "nav-home kn",
+    pageTitle: "ಪುಸ್ತಕಗಳು", pageTitleClass: "page-title kn",
+    pageSubtitle: "ಪ್ರಕಟಿತ ಕೃತಿಗಳು",
+    pageSubtitleClass: "page-subtitle kn",
     intro: "ಮುದ್ರಿತ ಪುಸ್ತಕಗಳು ಹಾಗೂ ಇ-ಪುಸ್ತಕಗಳು.",
     introClass: "intro kn",
-    sectionHeading: "ಪ್ರಕಟಣೆಗಳು", sectionHeadingClass: "section-heading kn",
+    sectionHeading: "ಪ್ರಕಟಣೆಗಳು",
+    sectionHeadingClass: "section-heading kn",
     aboutTitle: "ಲೇಖಕರ ಕುರಿತು", aboutTitleClass: "about-title kn",
     aboutSectionClass: "about-section kn",
-    aboutText: "ರಾಮಪ್ರಸಾದ್ ಕೆ.ವಿ. ಅವರು ಕರ್ನಾಟಕ ಸಂಗೀತ ಮತ್ತು ಕನ್ನಡ ಸಾಹಿತ್ಯ ಪರಂಪರೆಯಲ್ಲಿ ಆಸಕ್ತರಾದ ಗಮಕಿ, ವಾಗ್ಗೇಯಕಾರು, ಅನುವಾದಕ ಮತ್ತು ಲೇಖಕರು. ಈ ತಾಣದಲ್ಲಿ ಅವರ ರಚನೆಗಳು, ಅನುವಾದಗಳು ಮತ್ತು ಬರಹಗಳನ್ನು ಒಟ್ಟುಗೂಡಿಸಲಾಗಿದೆ.",
+    aboutText: "ರಾಮಪ್ರಸಾದ್ ಕೆ.ವಿ. ಅವರು ಕರ್ನಾಟಕ ಸಂಗೀತ ಮತ್ತು ಕನ್ನಡ ಸಾಹಿತ್ಯ ಪರಂಪರೆಯ ವಾಗ್ಗೇಯಕಾರರು, ಅನುವಾದಕರು ಮತ್ತು ಲೇಖಕರು.",
     footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ", footerClass: "kn",
     soon: "ಸದ್ಯದಲ್ಲೇ ಬರಲಿವೆ", soonClass: "soon-badge kn"
   }
 };
 
+/* ═══════════════════════════════════════════════════════════════
+   BOOKS DATA
+   ─────────────────────────────────────────────────────────────
+   To add a new book, copy the block below and fill in the fields.
+
+   {
+     title:      "ಕನ್ನಡ ಶೀರ್ಷಿಕೆ",          ← Kannada title (always shown)
+     roman:      "Romanised Title",           ← Romanised / English title
+     coverImg:   "covers/your-cover.jpg",     ← path to cover image
+     colorClass: "card-c1",                   ← card-c1 through card-c5
+     url:        "your-book-page.html",       ← link to the book detail page
+     live:       true,                        ← false = shows "Coming soon"
+     en: { desc: "English description." },
+     kn: { desc: "ಕನ್ನಡ ವಿವರಣೆ." }
+   },
+
+   Color classes available: card-c1 (teal), card-c2 (red-brown),
+   card-c4 (forest green), card-c5 (plum/magenta)
+   ═══════════════════════════════════════════════════════════════ */
 const BOOKS_DATA = [
+
   {
     title: "ಹಂಸನಾದ", roman: "Hamsanada",
-    coverImg: "covers/hamsanada-front.jpg", colorClass: "card-c1", url: "hamsanada.html", live: true,
+    coverImg: "covers/hamsanada-front.jpg", colorClass: "card-c1",
+    url: "hamsanada.html", live: true,
     en: { desc: "A curated anthology of verses translated from Samskrta to Kannada." },
-    kn: { desc: "ಸಂಸ್ಕೃತ ಭಾಷೆಯಿಂದ ಅನುವಾದಿಸಿದ ಆಯ್ದ ಪದ್ಯಗಳ ಸಂಕಲನ." } // 🔶 ಇಲ್ಲಿ 'ಭಾಷೆಯಿಂದ' ಅಕ್ಷರವನ್ನು ಸರಿಪಡಿಸಲಾಗಿದೆ
+    kn: { desc: "ಸಂಸ್ಕೃತ ಭಾಷೆಯಿಂದ ಅನುವಾದಿಸಿದ ಆಯ್ದ ಪದ್ಯಗಳ ಸಂಕಲನ." }
   },
+
   {
     title: "ಅಮರುಶತಕ", roman: "Amarushataka",
-    coverImg: "covers/amarushataka-front.jpg", colorClass: "card-c2", url: "amarushataka.html", live: true,
+    coverImg: "covers/amarushataka-front.jpg", colorClass: "card-c2",
+    url: "amarushataka.html", live: true,
     en: { desc: "A comprehensive metric translation of Amaru's one hundred evocative Sanskrit verses." },
     kn: { desc: "ಅಮರು ಕವಿಯ ಶೃಂಗಾರ ಪ್ರಧಾನ ಸಂಸ್ಕೃತ ಮುಕ್ತಕಗಳ ಛಂದೋಬದ್ಧ ಕನ್ನಡ ಅನುವಾದ." }
   },
+
   {
     title: "ಮುದ್ದುರಂಗನ ಚೌಪದಿಗಳು", roman: "Muddurangana Chaupadigalu",
-    coverImg: "covers/muddurangana.jpg", colorClass: "card-c4", url: "muddurangana-chaupadigalu.html", live: true,
+    coverImg: "covers/muddurangana.jpg", colorClass: "card-c4",
+    url: "muddurangana-chaupadigalu.html", live: true,
     en: { desc: "A collection of Kannada quatrains following traditional prosodic meters." },
     kn: { desc: "ಸಾಂಪ್ರದಾಯಿಕ ಚೌಪದಿ ಛಂದಸ್ಸಿನಲ್ಲಿ ರಚಿತವಾದ ಸ್ವತಂತ್ರ ಹಾಗೂ ಅನುವಾದಿತ ಮುಕ್ತಕಗಳ ಸಂಕಲನ." }
   },
+
   {
     title: "ಮೂರು ರೋಚಕ ನಾಟಕಗಳು", roman: "Mooru Rochaka Nāṭakagaḷu",
-    coverImg: "covers/natakagalu-front.jpg", colorClass: "card-c5", url: "mooru-rochaka-natakagalu.html", live: true,
+    coverImg: "covers/natakagalu-front.jpg", colorClass: "card-c5",
+    url: "mooru-rochaka-natakagalu.html", live: true,
     en: { desc: "Three mystery/suspense plays adapted from English." },
     kn: { desc: "ಇಂಗ್ಲೀಷ್ ನಿಂದ ಕನ್ನಡಕ್ಕೆ ರೂಪಾಂತರಿಸಿರುವ ಮೂರು ರೋಚಕ ನಾಟಕಗಳ ಸಂಗ್ರಹ." }
   }
+
+  /* ── ADD NEW BOOKS ABOVE THIS LINE ──────────────────────────
+     Remember: add a comma after the } of the previous entry.
+     ────────────────────────────────────────────────────────── */
+
+]; /* end BOOKS_DATA */
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV SECTIONS
+   ═══════════════════════════════════════════════════════════════ */
+const NAV_SECTIONS = [
+  { en:"Compositions",      kn:"ರಚನೆಗಳು",        url:"https://hamsanandi.github.io/compositions/" },
+  { en:"Articles",          kn:"ಲೇಖನಗಳು",         url:"https://hamsanandi.github.io/articles/" },
+  { en:"Books",             kn:"ಪುಸ್ತಕಗಳು",       url:"https://hamsanandi.github.io/books/", current:true },
+  { en:"Metrical Poetry",   kn:"ಛಂದೋಬದ್ಧ ಕಾವ್ಯ",  url:"https://hamsanandi.github.io/poetry/" },
+  { en:"Stage Productions", kn:"ರಂಗಪ್ರಯೋಗಗಳು",   url:"https://hamsanandi.github.io/stage-productions/" },
+  { en:"Gamaka Vachana",    kn:"ಗಮಕ ವಾಚನ",        url:"https://hamsanandi.github.io/gamaka-vachana/" },
+  { en:"Translations",      kn:"ಅನುವಾದಗಳು",       url:"https://hamsanandi.github.io/translations/" },
+  { en:"Reviews",           kn:"ವಿಮರ್ಶೆಗಳು",      url:"https://hamsanandi.github.io/reviews/" }
+  // { en:"Kaleidoscope", kn:"ವೈವಿಧ್ಯ", url:"https://hamsanandi.github.io/kaleidoscope/" }  ← uncomment when live
 ];
 
+/* ═══════════════════════════════════════════════════════════════
+   RENDER
+   ═══════════════════════════════════════════════════════════════ */
 let lang = 'en';
+
+function renderNav(l) {
+  const s = STR[l];
+  const navHome = document.getElementById('navHome');
+  navHome.textContent = s.navHome;
+  navHome.className   = s.navHomeClass;
+  const navLinks = document.getElementById('navLinks');
+  navLinks.innerHTML  = '';
+  NAV_SECTIONS.forEach(sec => {
+    const a = document.createElement('a');
+    a.href        = sec.url;
+    a.textContent = sec[l];
+    a.className   = 'nav-link' + (l === 'kn' ? ' kn' : '') + (sec.current ? ' active-section' : '');
+    navLinks.appendChild(a);
+  });
+}
 
 function buildCard(book, l, s) {
   const card = document.createElement('a');
   card.className = 'card ' + book.colorClass + (book.live ? '' : ' soon');
-  
-  card.href = book.url + (l === 'kn' ? '?lang=kn' : '');
-  
-  const descClass = 'card-desc' + (l === 'kn' ? ' kn' : '');
-  
-  const coverHTML = book.coverImg 
+  card.href = book.url;
+  const descClass  = 'card-desc' + (l === 'kn' ? ' kn' : '');
+  const coverHTML  = book.coverImg
     ? `<div class="book-cover-wrap"><img src="${book.coverImg}" alt="${book.title}" onerror="this.style.display='none';this.nextElementSibling.style.display='block';"><div class="cover-placeholder" style="display:none;">${book.title}</div></div>`
     : `<div class="book-cover-wrap"><div class="cover-placeholder">${book.title}</div></div>`;
-
   card.innerHTML = `
     <span class="card-accent"></span>
     <div class="card-body">
@@ -317,47 +396,41 @@ function buildCard(book, l, s) {
         <span class="card-roman">${book.roman}</span>
         <div class="${descClass}">${book[l].desc}</div>
         ${!book.live ? `<span class="${s.soonClass}">${s.soon}</span>` : ''}
-        ${book.live ? '<span class="card-arrow">→</span>' : ''}
+        ${book.live  ? '<span class="card-arrow">→</span>' : ''}
       </div>
     </div>`;
   return card;
 }
 
 function renderBooksGrid(l) {
-  const s = STR[l];
+  const s    = STR[l];
   const grid = document.getElementById('booksGrid');
   if (!grid) return;
   grid.innerHTML = '';
-
-  BOOKS_DATA.forEach(book => {
-    grid.appendChild(buildCard(book, l, s));
-  });
+  BOOKS_DATA.forEach(book => grid.appendChild(buildCard(book, l, s)));
 }
 
 function applyLang(l) {
   lang = l;
   const s = STR[l];
-  
-  document.getElementById('navBack').querySelector('a').textContent = s.backText;
-  document.getElementById('navBack').className = 'nav-back' + (l === 'kn' ? ' kn' : '');
-  document.getElementById('siteName').textContent        = s.siteName;
-  document.getElementById('siteName').className          = s.siteNameClass;
-  document.getElementById('siteTagline').textContent     = s.tagline;
-  document.getElementById('siteTagline').className       = s.siteTaglineClass;
-  document.getElementById('introText').textContent       = s.intro;
-  document.getElementById('introText').className         = s.introClass;
-  document.getElementById('sectionHeading').textContent  = s.sectionHeading;
-  document.getElementById('sectionHeading').className    = s.sectionHeadingClass;
-  document.getElementById('aboutTitle').textContent      = s.aboutTitle;
-  document.getElementById('aboutTitle').className        = s.aboutTitleClass;
-  document.getElementById('aboutSection').className      = s.aboutSectionClass;
-  document.getElementById('aboutText').textContent       = s.aboutText;
-  document.getElementById('footerEl').textContent        = s.footer;
-  document.getElementById('footerEl').className          = 'footer ' + (s.footerClass || '');
-  
+  document.getElementById('htmlRoot').lang              = l === 'kn' ? 'kn' : 'en';
+  document.getElementById('pageTitle').textContent      = s.pageTitle;
+  document.getElementById('pageTitle').className        = s.pageTitleClass;
+  document.getElementById('pageSubtitle').textContent   = s.pageSubtitle;
+  document.getElementById('pageSubtitle').className     = s.pageSubtitleClass;
+  document.getElementById('introText').textContent      = s.intro;
+  document.getElementById('introText').className        = s.introClass;
+  document.getElementById('sectionHeading').textContent = s.sectionHeading;
+  document.getElementById('sectionHeading').className   = s.sectionHeadingClass;
+  document.getElementById('aboutTitle').textContent     = s.aboutTitle;
+  document.getElementById('aboutTitle').className       = s.aboutTitleClass;
+  document.getElementById('aboutSection').className     = s.aboutSectionClass;
+  document.getElementById('aboutText').textContent      = s.aboutText;
+  document.getElementById('footerEl').textContent       = s.footer;
+  document.getElementById('footerEl').className         = 'footer ' + (s.footerClass || '');
   document.getElementById('btnEN').classList.toggle('active', l === 'en');
   document.getElementById('btnKN').classList.toggle('active', l === 'kn');
-  
+  renderNav(l);
   renderBooksGrid(l);
 }
 
