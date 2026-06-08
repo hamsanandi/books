@@ -190,29 +190,29 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 <div class="media-grid">
   <div class="media-card">
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/_JkG9Uozim8" allowfullscreen></iframe>
     </div>
     <div class="media-info">
       <span class="media-label" id="lblMedia1">Poem Rendition</span>
-      <div class="media-title">ಚೌಪದಿ ಗಾಯನ — ಶೈಲಿ ೧</div>
+      <div class="media-title" id="titleMedia1">Kavya Vachana of Muddurangana Chaupadigalu</div>
     </div>
   </div>
   <div class="media-card">
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/ZZ-_J14z7EU" allowfullscreen></iframe>
     </div>
     <div class="media-info">
       <span class="media-label" id="lblMedia2">Book Launch Speech</span>
-      <div class="media-title">ಲೋಕಾರ್ಪಣ ಸಮಾರಂಭ ಹಾಗೂ ಆಶಯ ಭಾಷಣ</div>
+      <div class="media-title" id="titleMedia2">Prof. Krishnegowda speaks about Muddurangana Chaupadigalu</div>
     </div>
   </div>
   <div class="media-card">
     <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+      <iframe src="https://www.youtube.com/embed/bLM7vg7G-8Q" allowfullscreen></iframe>
     </div>
     <div class="media-info">
       <span class="media-label" id="lblMedia3">Literary Review</span>
-      <div class="media-title">ಕೃತಿ ವಿಮರ್ಶೆ ಮತ್ತು ಸಾಹಿತ್ಯಿಕ ವಿಶ್ಲೇಷಣೆ</div>
+      <div class="media-title" id="titleMedia3">Book Launch of Muddurangana Chaupadigalu</div>
     </div>
   </div>
   <div class="media-card">
@@ -263,7 +263,10 @@ const STR = {
     grText:       "Goodreads Profile",
     sampleHeading:"Look Inside — Sample Verses",
     mediaHeading: "Media, Speeches & Reviews",
-    lbl1: "Poem Rendition", lbl2: "Launch Speech", lbl3: "Literary Review", lbl4: "Musical Performance",
+    lbl1: "Poem Rendition", lbl2: "Talk", lbl3: "Book Launch", lbl4: "Musical Performance",
+    title1: "Kavya Vachana of Muddurangana Chaupadigalu",
+    title2: "Prof. Krishnegowda speaks about Muddurangana Chaupadigalu",
+    title3: "Book Launch of Muddurangana Chaupadigalu",
     footer: "Hosted on GitHub Pages"
   },
   kn: {
@@ -272,7 +275,10 @@ const STR = {
     grText:       "ಗುಡ್‌ರೀಡ್ಸ್ ಪುಟ",
     sampleHeading:"ಪುಸ್ತಕದ ಒಳನೋಟ — ಆಯ್ದ ಪದ್ಯಗಳು",
     mediaHeading: "ದೃಶ್ಯಾವಳಿಗಳು, ಭಾಷಣಗಳು ಮತ್ತು ವಿಮರ್ಶೆಗಳು",
-    lbl1: "ಪದ್ಯ ಗಾಯನ", lbl2: "ಲೋಕಾರ್ಪಣ ಭಾಷಣ", lbl3: "ಕೃತಿ ವಿಮರ್ಶೆ", lbl4: "ಸಂಗೀತ ಪ್ರದರ್ಶನ",
+    lbl1: "ಪದ್ಯ ಗಾಯನ", lbl2: "ಮಾತುಗಳು", lbl3: "ಪುಸ್ತಕ ಬಿಡುಗಡೆ", lbl4: "ಸಂಗೀತ ಪ್ರದರ್ಶನ",
+    title1: "ಮುದ್ದುರಂಗನ ಚೌಪದಿಗಳ ಕಾವ್ಯವಾಚನ",
+    title2: "ಮುದ್ದುರಂಗನ ಚೌಪದಿಗಳ ಬಗ್ಗೆ ಪ್ರೊಫೆಸರ್ ಕೃಷ್ಣೇಗೌಡರ ಮಾತುಗಳು",
+    title3: "ಮುದ್ದುರಂಗನ ಚೌಪದಿಗಳು ಪುಸ್ತಕ ಬಿಡುಗಡೆ",
     footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ"
   }
 };
@@ -297,6 +303,8 @@ function applyLocalization(l) {
   ['1','2','3','4'].forEach(n => {
     const el = document.getElementById('lblMedia' + n);
     if (el) { el.textContent = s['lbl' + n]; el.className = 'media-label' + (l === 'kn' ? ' kn' : ''); }
+    const tel = document.getElementById('titleMedia' + n);
+    if (tel && s['title' + n]) { tel.textContent = s['title' + n]; tel.className = 'media-title' + (l === 'kn' ? ' kn' : ''); }
   });
   document.getElementById('footerEl').textContent = s.footer;
   document.getElementById('footerEl').className   = l === 'kn' ? 'kn' : '';
