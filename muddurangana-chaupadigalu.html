@@ -100,7 +100,7 @@ body {
 }
 .verse-block { text-align: center; margin-bottom: 20px; font-family: 'Noto Serif Kannada', serif; font-size: 1.05rem; line-height: 1.8; }
 .verse-block:last-child { margin-bottom: 0; }
-.verse-num { font-size: 0.85rem; color: var(--gold-dim); display: block; margin-top: 4px; font-family: 'EB Garamond', serif; }
+.verse-num { font-size: 1.05rem; color: var(--text); display: inline; margin-left: 6px; font-family: 'Noto Serif Kannada', serif; font-weight: 600; }
 
 /* ── Media Grid Layout ── */
 .media-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 0 20px; }
@@ -168,22 +168,8 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 </section>
 
 <div class="section-heading" id="sampleHeading">Look Inside — Sample Verses</div>
-<section class="sample-section">
-  <div class="verse-block">
-    ಪಲ್ಲವಿಸಿ ನಿಂತಿರುವ ಹಸಿರ ಸಿರಿ ತೋಟದಲಿ<br>
-    ನಿಲ್ಲದಲೆ ಹಾಡುತಿಹ ಹಕ್ಕಿಗಳ ಗಾನದಲಿ<br>
-    ಚೆಲ್ಲಿರುವ ದಿವ್ಯತೆಯ ಭಾವವನು ಸವಿಯುತಲಿ<br>
-    ಹೃಲ್ಲಾಸ ಕಾವ್ಯರಸ ಧಾರೆ ಸುರಿಯಲಿ ಇಲ್ಲಿ<br>
-    <span class="verse-num">— ೧</span>
-  </div>
-  <hr style="border:none; border-top:1px dashed var(--border-light); margin:14px 0;">
-  <div class="verse-block">
-    ಮಂದಹಾಸದ ಮುಖದ ಚಂದದ ಪ್ರಕಾಶದಲಿ<br>
-    ಬಂಧನವ ಕಳೆಯುವಾ ದಿವ್ಯ ಚೇತನದಲಿ<br>
-    ಆನಂದದ ಹೊನಲು ಉಕ್ಕಿ ಹರಿವಂತೆಸೆವ<br>
-    ಸುಂದರ ಕಾವ್ಯ ರಚನೆ ಮನವ ತಣಿಸಲಿ ಇಂದು<br>
-    <span class="verse-num">— ೨</span>
-  </div>
+<section class="sample-section" id="sampleSection">
+  <!-- filled by injectRandomVerses() on page load -->
 </section>
 
 <div class="section-heading" id="mediaHeading">Media, Speeches &amp; Reviews</div>
@@ -230,6 +216,44 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 <footer id="footerEl">Hosted on GitHub Pages</footer>
 
 <script>
+const VERSES_POOL = [
+  { text: "ರನ್ನಗನ್ನಡಿ ಚೆನ್ನ ಚಿನ್ನದೊಡವೆಯು ಚೆನ್ನ\nಸನ್ನಡತೆಯುಳ್ಳವರ ಕೆಳೆಯು ಚೆನ್ನ ಕಣೊ!\nಚಿಣ್ಣರಾ ನಗೆ ಚೆನ್ನ ಹುಣ್ಣಿಮೆಯಿರುಳು ಚೆನ್ನ\nಕನ್ನಡದ ನುಡಿ ಚೆನ್ನ!" },
+  { text: "ಸಣ್ಣದನು ಮರೆಯದಿರು ಹಿರಿದೇನೊ ಸಿಕ್ಕಾಗ;\nಚಿಣ್ಣಿಕೋಲಿಗೆ ತೇಗ ಬೀಟೆ ಮರ ಬೇಕೆ?\nಸಣ್ಣ ಸೂಜಿಯ ಕೆಲಸ ಹಿರಿಗತ್ತಿ ಮಾಳ್ಪುದೇ—\nನಣ್ಣ? ನೀ ನೆನೆಯದನು!" },
+  { text: "ನೂರು ಹೊತ್ತಗೆಗಳಲ್ಲೋಡಾಡುತಲಿ ನೀನು\nಗೋರುತಲಿ ಹಾಳೆಗಳ ಮೆರೆಯುತಿಹೆಯಲ್ಲ!\nನೇರವಾಗೊಂದಕ್ಕರವನರಿಯದಿಹ ಪುಟದ\nಗುರುತಷ್ಟೆ ನಿನ್ನ ಬೆಲೆ!" },
+  { text: "ನೂರು ಕತ್ತರಿಸದೆ ಹೇಳು ಹೊಳೆದಾವೆ ವಜ್ರಗಳು?\nನೂರು ಉಳಿ ಪೆಟ್ಟಿರದೆ ಶಿಲ್ಪವಾಗುವುದೆ?\nಏರಬಹುದೇನಯ್ಯ ಬಾಳಿನಲ್ಲೆದುರಿಸದೆ\nಬಾರಿಬಾರಿಗು ಕಷ್ಟ!" },
+  { text: "ಕವಿಯೋರ್ವ ಬರೆದಾನು ಕಬ್ಬವನು! ಅದರಲ್ಲಿ\nಸವಿಯುಂಡು ಪಸರಿಸಲು ಬೇಕು ಪಂಡಿತರು\nಸುವಿಶಾಲ ಸಂಪಗೆಯ ಕಂಪ ಹರಡಲು ಸುಳಿದಿ—\nರುವ ಗಾಳಿಯೇ ಬೇಕು!" },
+  { text: "ಊರೂರು ಸುತ್ತಿಯೂ ಬುದ್ಧಿ ಬರದವರುಂಟು;\nಇರುವಲ್ಲಿಯೇ ನಿಂತು ಚತುರರಾದವರುಂಟು!\nತಿರುಗಿಯೂ ಏಳು ಮನೆಗಳ ಚೀಲಿ ಹುಲಿಯಂತೆ\nಗೌರವವ ಪಡೆಯುವುದೆ?" },
+  { text: "ಎಲ್ಲಕಡೆಯಿರುವನಾ ದೇವರೆಂದರಿಯದೆಯೆ\nಸಲ್ಲುವುದೆ ಹುಟುಕಾಟ ಅವನ ಸಲುವಾಗಿ?\nಬಲ್ಲವನು ನೀನಾಗು; ನಿನ್ನೊಳಗೆ ನೀ ಹುಡುಕು\nಒಲ್ಲೆನುತ ಇಬ್ಬಂದಿ!" },
+  { text: "ಬಹುಕಾಲ ಜೊತೆಯಲಿದ್ದವರೆಲ್ಲ ಹಿತವೆಂದು\nಬಹಳ ನಂಬದಿರಯ್ಯ! ಬೇರೆ ದಿಟವುಂಟು;\nಸಹವಾಸಿ ಚಂದ್ರನಿರೆ ಚಿಕ್ಕೆಗಳು ಬೆಳಗುವುವೆ?\nಗಹನ ಗೆಳೆತನದೊಳಗು!" },
+  { text: "ಮುಳ್ಳು ತುಂಬಿದ ವಿಷದ ಮರವಹುದು ಸಂಸಾರ\nಇಲ್ಲುಂಟು ಸವಿ ಹಣ್ಣು ಎರಡು ಕೇಳು!\nಒಳ್ಳೆ ಕಾವ್ಯಗಳನ್ನು ಓದುವುದು ಮತ್ತೊಂದು\nಒಳ್ಳೆ ಜನಗಳ ಸಂಗ!" },
+  { text: "ಅರಿತವರೆ ಇರದಿರದ ಕಡೆಯಲ್ಲಿ ಗೌರವವು\nದೊರೆತೀತು ಮಡೆಯನಿಗು! ಆಶ್ಚರ್ಯವೆಲ್ಲಿ?;\nಮರಗಳೇ ಇಲ್ಲದಿಹ ದೇಶದಲಿ ಕೇಳಯ್ಯ\nಹರಳುಗಿಡ ಹೆಮ್ಮರವು!" },
+  { text: "ಚೆನ್ನಾಗಿ ಹೊತ್ತಗೆಗಳನ್ನೋದಿ ಫಲವೇನು\nಮುನ್ನ ಸಾವಿರದ ಲೆಕ್ಕದಲಿ? ಹೇಳಯ್ಯ\nಉನ್ನತಿಯನೇರುವಂತಹ ಗುರಿಯ ಮುಟ್ಟಲಿಕೆ\nನಿನ್ನ ನೀನೋದಿಕೊಳೊ!" },
+  { text: "ಸಂತೆಯಲಿ ಸೇಂದಿಯಂಗಡಿಯಿರುವ ಕಾರಣಕೆ\nಚಿಂತೆಗೈಯುತ ಮನೆಗೆ ನಿತ್ಯ ಬೇಕಾದ\nಕಂತೆ ಕರಿಬೇವ ನೀ ತರದಿರಲು ರುಚಿಯಿಲ್ಲ—\nದಂತಡುಗೆಯನ್ನುಣುವೆ!" },
+  { text: "ಹಸಿರು ಹೊಳೆಯುವರೆಕ್ಕೆ ಕೆಂಪುಕೊಕ್ಕಿದೆಯೆನಗೆ\nಉಸಿರುವೆನು ಸವಿಮಾತೆನುತ ಮೆರೆಯಬೇಡ\nನಿಶೆಯ ಕತ್ತಲೆಯಲ್ಲಿ ಗುರಿಯ ಬಾವಲಿಯಂತೆ\nತುಸು ಇಡಲು ಕಲಿ ನೀನು!" },
+  { text: "ಎಳವೆಯಲ್ಲುಣಿಸಿದ್ದ ತುಸುವೆ ನೀರನು ನೆನೆದು\nತಲೆಮೇಲೆ ಹೊರೆಯಿಟ್ಟು ತೆಂಗು ಮನುಜರಿಗೆ\nಎಳನೀರ ನೀಡುವುದು ಕೊನೆವರೆಗು; ನೆರವನ—\nಗ್ಗಳರು ಮರೆಯುವುದಿಲ್ಲ!" },
+  { text: "ಬಾಳಲ್ಲಿ ಬಂದಾವು ಗೆಲುವು ಸೋಲುಗಳೆರಡು\nಬೀಳುವುದು ಸಹಜ ಕಣೊ ನಡೆಯುತಿರುವಾಗ;\nಏಳು ಎದ್ದೇಳು ಬಿದ್ದಲ್ಲಿಂದ ನಂಬುತಲಿ\nಬಾಳಬಂಡಿಯ ಪಯಣ!" }
+];
+
+function injectRandomVerses() {
+  const container = document.getElementById('sampleSection');
+  if (!container || VERSES_POOL.length === 0) return;
+
+  /* Pick 2 distinct random indices */
+  const idx1 = Math.floor(Math.random() * VERSES_POOL.length);
+  let idx2;
+  do { idx2 = Math.floor(Math.random() * VERSES_POOL.length); } while (idx2 === idx1);
+
+  const render = (v) => {
+    const lines = v.text.split('\n').join('<br>');
+    return `<div class="verse-block">${lines} <span class="verse-num">ಮುದ್ದುರಂಗ</span></div>`;
+  };
+
+  container.innerHTML =
+    render(VERSES_POOL[idx1]) +
+    '<hr style="border:none; border-top:1px dashed var(--border-light); margin:14px 0;">' +
+    render(VERSES_POOL[idx2]);
+}
+
 const NAV_SECTIONS = [
   { en:"Compositions",      kn:"ರಚನೆಗಳು",       url:"https://hamsanandi.github.io/compositions/" },
   { en:"Articles",          kn:"ಲೇಖನಗಳು",        url:"https://hamsanandi.github.io/articles/" },
@@ -319,6 +343,7 @@ document.getElementById('langToggle').addEventListener('click', e => {
 // Bootstrap — read ?lang=kn from URL or default to EN
 const urlParams = new URLSearchParams(window.location.search);
 applyLocalization(urlParams.get('lang') === 'kn' ? 'kn' : 'en');
+injectRandomVerses();
 </script>
 </body>
 </html>
