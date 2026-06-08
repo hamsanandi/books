@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="en" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,6 +35,16 @@ body {
 .nav-link:hover { color: var(--gold); background: rgba(139,94,26,0.06); }
 .nav-link.active-section { color: var(--gold); font-weight: 600; }
 .nav-link.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.72rem; }
+
+/* ── Lang toggle ── */
+.lang-toggle {
+  background: var(--header-bg); border: 1px solid var(--border-light);
+  border-radius: 20px; padding: 5px 4px; display: flex; gap: 3px;
+  flex-shrink: 0;
+}
+.lang-btn { font-size: 0.75rem; padding: 4px 10px; border-radius: 16px; border: none; background: none; cursor: pointer; color: var(--meta); font-family: 'EB Garamond', serif; transition: all 0.18s; }
+.lang-btn.active { background: var(--gold); color: #fff; font-weight: 600; }
+.lang-btn.kn-btn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.78rem; }
 
 /* ── Book Hero Layout ── */
 .book-hero {
@@ -98,72 +108,33 @@ body {
 
 /* ── Reviews Section ── */
 .reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-  padding: 0 20px;
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px; padding: 0 20px;
 }
 .review-card {
-  background: var(--section-bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 18px 20px;
-  position: relative;
+  background: var(--section-bg); border: 1px solid var(--border);
+  border-radius: 8px; padding: 18px 20px; position: relative;
 }
 .review-card::before {
-  content: '\201C';
-  font-family: 'EB Garamond', serif;
-  font-size: 3rem;
-  color: var(--border-light);
-  position: absolute;
-  top: 6px;
-  left: 14px;
-  line-height: 1;
+  content: '\201C'; font-family: 'EB Garamond', serif;
+  font-size: 3rem; color: var(--border-light);
+  position: absolute; top: 6px; left: 14px; line-height: 1;
 }
-.review-text {
-  font-size: 0.93em;
-  font-style: italic;
-  line-height: 1.65;
-  color: var(--text);
-  padding-top: 18px;
-}
+.review-text { font-size: 0.93em; font-style: italic; line-height: 1.65; color: var(--text); padding-top: 18px; }
 .review-text.kn { font-family: 'Noto Sans Kannada', sans-serif; font-style: normal; font-size: 0.85em; }
-.review-source {
-  margin-top: 10px;
-  font-size: 0.78em;
-  color: var(--meta);
-  font-family: 'Cinzel', serif;
-  letter-spacing: 0.06em;
-}
+.review-source { margin-top: 10px; font-size: 0.78em; color: var(--meta); font-family: 'Cinzel', serif; letter-spacing: 0.06em; }
 .review-source a { color: var(--gold-dim); text-decoration: none; }
 .review-source a:hover { text-decoration: underline; color: var(--gold); }
 
 /* ── Media Grid Layout ── */
-.media-grid { 
-  display: grid; 
-  grid-template-columns: repeat(3, 1fr); 
-  gap: 20px; 
-  padding: 0 20px; 
-}
-.media-card {
-  background: var(--bg); border: 1px solid var(--border); border-radius: 8px;
-  overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-}
+.media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 20px; }
+.media-card { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.03); }
 .video-container { position: relative; width: 100%; padding-bottom: 56.25%; background: #000; }
 .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 .media-info { padding: 12px; }
-.media-label {
-  font-size: 0.7em; letter-spacing: 0.1em; color: var(--gold-dim);
-  font-family: 'Cinzel', serif; margin-bottom: 4px; display: block;
-}
+.media-label { font-size: 0.7em; letter-spacing: 0.1em; color: var(--gold-dim); font-family: 'Cinzel', serif; margin-bottom: 4px; display: block; }
 .media-label.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.72rem; letter-spacing: 0; }
-.media-title {
-  font-family: 'EB Garamond', serif;
-  font-size: 0.95rem;
-  color: var(--text);
-  min-height: 38px;
-  line-height: 1.4;
-}
+.media-title { font-family: 'EB Garamond', serif; font-size: 0.95rem; color: var(--text); min-height: 38px; line-height: 1.4; }
 .media-title.kn { font-family: 'Noto Serif Kannada', serif; }
 
 /* ── Footer ── */
@@ -171,7 +142,7 @@ body {
 footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.82em; }
 footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
-/* ── Responsive Viewport Adjustments ── */
+/* ── Responsive ── */
 @media (max-width: 768px) {
   .media-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
   .reviews-grid { grid-template-columns: 1fr; }
@@ -181,6 +152,7 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
   .nav-home { width: 100%; padding-bottom: 6px; line-height: 1.4; }
   .nav-links { width: 100%; overflow-x: auto; }
   .nav-link { font-size: 0.72rem; padding: 0 8px; line-height: 32px; }
+  .lang-toggle { margin: 4px 0; }
 }
 @media (max-width: 520px) {
   .media-grid { grid-template-columns: 1fr; }
@@ -189,10 +161,14 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 </head>
 <body>
 
-<!-- ── Sticky nav bar ── -->
+<!-- ── Sticky nav bar with lang toggle on the right ── -->
 <nav class="site-nav" id="siteNav" aria-label="Site navigation">
   <a class="nav-home" id="navHome" href="https://hamsanandi.github.io/">Hamsanandi</a>
   <div class="nav-links" id="navLinks"></div>
+  <div class="lang-toggle" id="langToggle">
+    <button class="lang-btn active" id="btnEN">EN</button>
+    <button class="lang-btn kn-btn" id="btnKN">ಕನ್ನಡ</button>
+  </div>
 </nav>
 
 <section class="book-hero">
@@ -202,7 +178,6 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
       <div class="cover-placeholder-text" style="display:none;">ಅಮರುಶತಕ<br><small>(Front Cover)</small></div>
       <div class="cover-label">Front</div>
     </a>
-    
     <a href="covers/amarushataka-back.jpg" target="_blank" class="book-cover" title="Click to view full back cover">
       <img src="covers/amarushataka-back.jpg" alt="Back Cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div class="cover-placeholder-text" style="display:none;">ಅಮರುಶತಕ<br><small>(Back Cover)</small></div>
@@ -213,8 +188,7 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
   <div class="book-details">
     <h1 class="book-title" id="bookTitle">ಅಮರುಶತಕ</h1>
     <span class="book-roman">Amarushataka</span>
-    <p class="book-synopsis" id="bookSynopsis">ಅಮರು ಕವಿಯ ಶೃಂಗಾರ ಪ್ರಧಾನ ಸಂಸ್ಕೃತ ಮುಕ್ತಕಗಳಿಗೆ ಛಂದೋಬದ್ಧ ಕನ್ನಡ ಅನುವಾದ ಮತ್ತು ಸವಿಸ್ತಾರವಾದ ವಿವರಣೆ. ಈ ಕೃತಿಯು ಮೂಲ ಶ್ಲೋಕಗಳ ಭಾವಸೌಂದರ್ಯ ಹಾಗೂ ರಚನಾತ್ಮಕ ವಿನ್ಯಾಸವನ್ನು ಕನ್ನಡದ ವಿಶಿಷ್ಟ ಕಾವ್ಯರೂಪದಲ್ಲಿ ಕಟ್ಟಿಕೊಡುತ್ತದೆ.</p>
-    
+    <p class="book-synopsis" id="bookSynopsis"></p>
     <div class="action-hub" id="actionHub">
       <a href="https://sahityaprakashan.com/product/amaru-shataka/" target="_blank" class="btn btn-primary" id="btnBuy">Buy from Sahitya Prakashana</a>
       <a href="https://www.exoticindiaart.com/book/details/amaru-shataka-kannada-had432/" target="_blank" class="btn btn-primary" id="btnBuyExotic">Buy on Exotic India</a>
@@ -230,161 +204,70 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
 <!-- ═══════════════════════════════════════════════════════════════════
      REVIEWS SECTION
-     ═══════════════════════════════════════════════════════════════════
-
      HOW TO ADD A REVIEW:
-     1. Add the English text to STR.en.reviews[] and Kannada text to STR.kn.reviews[].
-        Both arrays must stay the same length and in the same order.
-     2. Copy one of the placeholder <div class="review-card"> blocks below
-        and add a new one with the next id (e.g. id="review3").
-     3. In applyLocalization(), the loop runs up to REVIEWS.length automatically —
-        no extra JS changes needed as long as you add matching HTML cards.
-
-     FIELDS:
-       text   — the review quote (will be italicised automatically)
-       source — reviewer name / publication, shown below the quote
-       url    — (optional) link on the source name; omit or set "" to skip
-
-     EXAMPLE:
-       { text: "A luminous rendering…", source: "Prajavani", url: "https://prajavani.net/..." }
+     1. Add entries to STR.en.reviews[] and STR.kn.reviews[] (same order).
+     2. Copy a review-card block below and increment the id numbers.
+     Fields: { text, source, url }  — url is optional.
      ═══════════════════════════════════════════════════════════════════ -->
-
 <div class="section-heading" id="reviewsHeading">Reviews &amp; Responses</div>
 <div class="reviews-grid" id="reviewsGrid">
-
-  <!-- Review 1 — replace placeholder text with a real quote when available -->
   <div class="review-card" id="review1">
-    <div class="review-text" id="reviewText1"><!-- filled by JS --></div>
-    <div class="review-source" id="reviewSource1"><!-- filled by JS --></div>
+    <div class="review-text" id="reviewText1"></div>
+    <div class="review-source" id="reviewSource1"></div>
   </div>
-
-  <!-- Review 2 — replace placeholder text with a real quote when available -->
   <div class="review-card" id="review2">
-    <div class="review-text" id="reviewText2"><!-- filled by JS --></div>
-    <div class="review-source" id="reviewSource2"><!-- filled by JS --></div>
+    <div class="review-text" id="reviewText2"></div>
+    <div class="review-source" id="reviewSource2"></div>
   </div>
-
-  <!-- ── ADD NEW REVIEW CARDS ABOVE THIS LINE ─────────────────────────
-       Copy the block above, increment the id numbers (review3, reviewText3,
-       reviewSource3), then add matching entries to STR.en.reviews[] and
-       STR.kn.reviews[] in the <script> section below.
-       ─────────────────────────────────────────────────────────────── -->
-
+  <!-- ADD NEW REVIEW CARDS ABOVE THIS LINE (copy block above, increment ids) -->
 </div>
 
 <div class="section-heading" id="mediaHeading">Lectures &amp; Media</div>
 <div class="media-grid">
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/Vu7tXoKd1w8" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia1">Lecture</span>
-      <div class="media-title" id="titleMedia1">Shatavadhani Dr R Ganesh speaks about Amarushataka</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/Vu7tXoKd1w8" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia1"></span><div class="media-title" id="titleMedia1"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/EvNiDnJT2xI" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia2">Recitation</span>
-      <div class="media-title" id="titleMedia2">A verse from Amarushataka in Gamaka style</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/EvNiDnJT2xI" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia2"></span><div class="media-title" id="titleMedia2"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/ZxKx2RXN6aA?start=3412" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia3">Literary Discussion</span>
-      <div class="media-title" id="titleMedia3">"Nayikas &amp; Nayakas of Amarushataka" in the light of Natya Shastra</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/ZxKx2RXN6aA?start=3412" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia3"></span><div class="media-title" id="titleMedia3"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/a9rJrwbdUEk" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia4">Book Review</span>
-      <div class="media-title" id="titleMedia4">Introductory talk about Amarushataka in Kannada</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/a9rJrwbdUEk" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia4"></span><div class="media-title" id="titleMedia4"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/Sdn31OLrS8w" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia5">Commentary</span>
-      <div class="media-title" id="titleMedia5">A conversation about Amaru Shatakam, theater, history and music</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/Sdn31OLrS8w" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia5"></span><div class="media-title" id="titleMedia5"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/e31xVcvEqEc" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia6">Recitation</span>
-      <div class="media-title" id="titleMedia6">Prahara Viratau — verse recitation from Amarushataka</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/e31xVcvEqEc" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia6"></span><div class="media-title" id="titleMedia6"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/cqv58bTs1Zw" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia7">Recitation</span>
-      <div class="media-title" id="titleMedia7">Yatah Kim Na Milanti — verse recitation from Amarushataka</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/cqv58bTs1Zw" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia7"></span><div class="media-title" id="titleMedia7"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/9mMMn-gJi3w" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia8">Podcast</span>
-      <div class="media-title" id="titleMedia8">Thale-Harate Kannada Podcast Ep. 12: Amaru-Shataka</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/9mMMn-gJi3w" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia8"></span><div class="media-title" id="titleMedia8"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/SpVlfQjnaA0" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia9">Recitation</span>
-      <div class="media-title" id="titleMedia9">A verse from Amaru Shataka (recitation performance)</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/SpVlfQjnaA0" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia9"></span><div class="media-title" id="titleMedia9"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/UEA2Z6Qjh38?start=1163" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia10">Literary Discussion</span>
-      <div class="media-title" id="titleMedia10">Amarushataka on Vichitramanjari</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/UEA2Z6Qjh38?start=1163" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia10"></span><div class="media-title" id="titleMedia10"></div></div>
   </div>
-
   <div class="media-card">
-    <div class="video-container">
-      <iframe src="https://www.youtube.com/embed/tx0VdqhEnXU" allowfullscreen></iframe>
-    </div>
-    <div class="media-info">
-      <span class="media-label" id="lblMedia11">Recitation</span>
-      <div class="media-title" id="titleMedia11">Shunyam Vasagrham — classical metric Kannada rendering</div>
-    </div>
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/tx0VdqhEnXU" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia11"></span><div class="media-title" id="titleMedia11"></div></div>
   </div>
-
 </div>
 
 <hr class="section-divider">
@@ -392,14 +275,14 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
 <script>
 const NAV_SECTIONS = [
-  { en:"Compositions",      kn:"ರಚನೆಗಳು",        url:"https://hamsanandi.github.io/compositions/" },
-  { en:"Articles",          kn:"ಲೇಖನಗಳು",         url:"https://hamsanandi.github.io/articles/" },
-  { en:"Books",             kn:"ಪುಸ್ತಕಗಳು",       url:"https://hamsanandi.github.io/books/", current:true },
-  { en:"Metrical Poetry",   kn:"ಛಂದೋಬದ್ಧ ಕಾವ್ಯ",  url:"https://hamsanandi.github.io/poetry/" },
-  { en:"Stage Productions", kn:"ರಂಗಪ್ರಯೋಗಗಳು",   url:"https://hamsanandi.github.io/stage-productions/" },
-  { en:"Gamaka Vachana",    kn:"ಗಮಕ ವಾಚನ",        url:"https://hamsanandi.github.io/gamaka-vachana/" },
-  { en:"Translations",      kn:"ಅನುವಾದಗಳು",       url:"https://hamsanandi.github.io/translations/" },
-  { en:"Reviews",           kn:"ವಿಮರ್ಶೆಗಳು",      url:"https://hamsanandi.github.io/reviews/" }
+  { en:"Compositions",      kn:"ರಚನೆಗಳು",       url:"https://hamsanandi.github.io/compositions/" },
+  { en:"Articles",          kn:"ಲೇಖನಗಳು",        url:"https://hamsanandi.github.io/articles/" },
+  { en:"Books",             kn:"ಪುಸ್ತಕಗಳು",      url:"https://hamsanandi.github.io/books/", current:true },
+  { en:"Metrical Poetry",   kn:"ಛಂದೋಬದ್ಧ ಕಾವ್ಯ", url:"https://hamsanandi.github.io/poetry/" },
+  { en:"Stage Productions", kn:"ರಂಗಪ್ರಯೋಗಗಳು",  url:"https://hamsanandi.github.io/stage-productions/" },
+  { en:"Gamaka Vachana",    kn:"ಗಮಕ ವಾಚನ",       url:"https://hamsanandi.github.io/gamaka-vachana/" },
+  { en:"Translations",      kn:"ಅನುವಾದಗಳು",      url:"https://hamsanandi.github.io/translations/" },
+  { en:"Reviews",           kn:"ವಿಮರ್ಶೆಗಳು",     url:"https://hamsanandi.github.io/reviews/" }
 ];
 
 function renderNav(l) {
@@ -419,7 +302,6 @@ function renderNav(l) {
 
 const STR = {
   en: {
-    backText: "← Back to Books",
     synopsis: "A metrical translation of Amaru's evocative Sanskrit verses, with ample notes. This work meticulously renders the classical 'Shringara' nuances into Kannada while preserving the architectural beauty of the original quatrains.",
     buyText: "Buy from Sahitya Prakashana",
     buyExoticText: "Buy on Exotic India",
@@ -427,11 +309,11 @@ const STR = {
     sampleHeading: "Look Inside — Sample Verses",
     reviewsHeading: "Reviews & Responses",
     mediaHeading: "Lectures & Media",
-    lbl1: "Lecture",          lbl2: "Recitation",
+    lbl1: "Lecture",            lbl2: "Recitation",
     lbl3: "Literary Discussion", lbl4: "Book Review",
-    lbl5: "Commentary",       lbl6: "Recitation",
-    lbl7: "Recitation",       lbl8: "Podcast",
-    lbl9: "Recitation",       lbl10: "Literary Discussion", lbl11: "Recitation",
+    lbl5: "Commentary",         lbl6: "Recitation",
+    lbl7: "Recitation",         lbl8: "Podcast",
+    lbl9: "Recitation",         lbl10: "Literary Discussion", lbl11: "Recitation",
     t1:  "Shatavadhani Dr R Ganesh speaks about Amarushataka",
     t2:  "A verse from Amarushataka in Gamaka style",
     t3:  "\u201cNayikas & Nayakas of Amarushataka\u201d in the light of Natya Shastra",
@@ -444,6 +326,12 @@ const STR = {
     t10: "Amarushataka on Vichitramanjari",
     t11: "Shunyam Vasagrham \u2014 classical metric Kannada rendering",
     footer: "Hosted on GitHub Pages",
+    /* ── REVIEWS ──────────────────────────────────────────────────────
+       Each object: { text, source, url }
+       url is optional — omit or set "" for plain text source.
+       To add a review: append here AND in STR.kn.reviews[], then add
+       a matching .review-card block in the HTML above.
+       ────────────────────────────────────────────────────────────── */
     reviews: [
       {
         text:   "AmaruShataka Book review on Book Brahma: by M.R.Dattathri",
@@ -459,7 +347,6 @@ const STR = {
   },
 
   kn: {
-    backText: "← ಪುಸ್ತಕಗಳ ಪುಟಕ್ಕೆ",
     synopsis: "ಅಮರು ಕವಿಯ ಶೃಂಗಾರ ಪ್ರಧಾನ ಸಂಸ್ಕೃತ ಮುಕ್ತಕಗಳಿಗೆ ಛಂದೋಬದ್ಧ ಕನ್ನಡ ಅನುವಾದ ಮತ್ತು ಸವಿಸ್ತಾರವಾದ ವಿವರಣೆ. ಈ ಕೃತಿಯು ಮೂಲ ಶ್ಲೋಕಗಳ ಭಾವಸೌಂದರ್ಯ ಹಾಗೂ ರಚನಾತ್ಮಕ ವಿನ್ಯಾಸವನ್ನು ಕನ್ನಡದ ವಿಶಿಷ್ಟ ಕಾವ್ಯರೂಪದಲ್ಲಿ ಕಟ್ಟಿಕೊಡುತ್ತದೆ.",
     buyText: "ಸಾಹಿತ್ಯ ಪ್ರಕಾಶನದಲ್ಲಿ ಕೊಳ್ಳಿ",
     buyExoticText: "ಎಕ್ಸೋಟಿಕ್ ಇಂಡಿಯಾದಲ್ಲಿ ಕೊಳ್ಳಿ",
@@ -467,11 +354,11 @@ const STR = {
     sampleHeading: "ಅಮರುಶತಕದೊಳಗೆ ಒಂದು ಇಣುಕುನೋಟ",
     reviewsHeading: "ವಿಮರ್ಶೆಗಳು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಗಳು",
     mediaHeading: "ಉಪನ್ಯಾಸಗಳು ಮತ್ತು ದೃಶ್ಯಾವಳಿಗಳು",
-    lbl1: "ಉಪನ್ಯಾಸ ಮಾಲೆ",      lbl2: "ಗಾಯನ ಪ್ರಸ್ತುತಿ",
-    lbl3: "ಸಾಹಿತ್ಯಿಕ ಸಂವಾದ",  lbl4: "ಕೃತಿ ವಿಮರ್ಶೆ",
-    lbl5: "ಹೆಚ್ಚಿನ ವಿವರಣೆ",    lbl6: "ಪದ್ಯ ವಾಚನ",
-    lbl7: "ಪದ್ಯ ವಾಚನ",          lbl8: "ಪೋಡ್‌ಕಾಸ್ಟ್‌ಗಳು",
-    lbl9: "ಪದ್ಯ ವಾಚನ",          lbl10: "ಸಾಹಿತ್ಯಿಕ ಸಂವಾದ", lbl11: "ಪದ್ಯ ವಾಚನ",
+    lbl1: "ಉಪನ್ಯಾಸ ಮಾಲೆ",       lbl2: "ಗಾಯನ ಪ್ರಸ್ತುತಿ",
+    lbl3: "ಸಾಹಿತ್ಯಿಕ ಸಂವಾದ",   lbl4: "ಕೃತಿ ವಿಮರ್ಶೆ",
+    lbl5: "ಹೆಚ್ಚಿನ ವಿವರಣೆ",     lbl6: "ಪದ್ಯ ವಾಚನ",
+    lbl7: "ಪದ್ಯ ವಾಚನ",           lbl8: "ಪೋಡ್‌ಕಾಸ್ಟ್‌ಗಳು",
+    lbl9: "ಪದ್ಯ ವಾಚನ",           lbl10: "ಸಾಹಿತ್ಯಿಕ ಸಂವಾದ", lbl11: "ಪದ್ಯ ವಾಚನ",
     t1:  "ಶತಾವಧಾನಿ ಡಾ. ಆರ್ ಗಣೇಶ್ ಅವರಿಂದ ಅಮರುಶತಕದ ಕುರಿತು ವಿಶೇಷ ಭಾಷಣ",
     t2:  "ಅಮರುಶತಕದಿಂದ ಆಯ್ದ ಒಂದು ಪದ್ಯದ ಗಮಕ ವಾಚನ",
     t3:  "ನಾಟ್ಯಶಾಸ್ತ್ರದ ಚೌಕಟ್ಟಿನಲ್ಲಿ ಅಮರುಶತಕದ ನಾಯಕ-ನಾಯಕಿಯರ ವಿಶ್ಲೇಷಣೆ",
@@ -500,53 +387,22 @@ const STR = {
 };
 
 const VERSES_POOL = [
-  {
-    num: "೧",
-    text: "ಮಂಚದಿಂದೇಳುತಲಿ ಮನೆಯೊಳಗೆ ಯಾರಿಲ್ಲವೆಂಬುದನು ನೆನೆಯುತ್ತಲಷ್ಟು ಹೊತ್ತು<br>ನೆವದ ಕಡುನಿದ್ದೆಯಲ್ಲಿರುವ ಪತಿ ಮೊಗವನ್ನು ತಾನೊಂದೆಸಮ ನೋಡಿದೀಕೋಮಲೆ<br>ನೆಮ್ಮದಿಯ ತಾಳಿ ಮುತ್ತನ್ನೀಡೆ ಗಲ್ಲವದು ನವಿರೇಳುತಿರುವುದನು ಕಂಡಾಗಲೇ<br>ನಾಚಿಕೆಯ ಮೈವೆತ್ತು ತಲೆಯನ್ನು ಬಾಗಿಸಿರೆ ಗಹಗಹಿಸಿ ನಗುನಗುತಲವ ಮುತ್ತನಿಟ್ಟ"
-  },
-  {
-    num: "೨",
-    text: "ತನ್ನ ಬಿಲ್ಲಿನ ಹೆದೆಯ ಸೆಳೆಯುತಿರೆ ಅಂಬಿಕೆಯು<br>ಖಟಕಾಮುಖದ ಮುದ್ರೆ ತೋರುವಂತೆ<br>ಒಟ್ಟು ಸೇರಿದ ಬೆರಳ ಚಿಗುರಂಥ ತುದಿಯಲ್ಲಿ<br>ಹೊಳಪಾದ ಉಗುರುಗಳು ಗೊಂಚಲಂತೆ<br>ಮೆರೆವ ಕಿವಿಯೋಲೆ ಬಳಿ ಹೂ ಜೇನ ಸವಿಯಲಿಕೆ<br>ಸುಳಿವ ದುಂಬಿಗಳಂತೆ ಭಾಸವಾಗೆ<br>ಆ ದೇವಿ ತನ್ನ ಕಡೆಗಣ್ಣಿನಲಿ ಬೀರುತಿಹ<br>ನೋಟಗಳೆ ನಿನ್ನನ್ನು ಕಾಪಾಡಲಿ"
-  },
-  {
-    num: "೩",
-    text: "ಕಾತರತೆಯಿರದೆದೆಯು ಝಲ್ಲೆನೆದೆಯೇ ಮೈ ನವಿರೇಳದೇ<br>ಮೊಗವು ತುಸುವೂ ಬೆವರದಿದ್ದೆನೆ ಕಪಟಿ ಕಾಣುವ ತನಕವೇ<br>ನೋಡಿದೊಡನೆಯೆ ಮನದಧೈರ್ಯವನಿನಿಯ ಸೆಳೆದಿರೆ ಕೂಡಲೇ<br>ಜತನದಲಿ ಕೂಡಿಟ್ಟ ಬಿಂಕವನೆಂತು ಪಡೆಯಲಿ ಪೇಳೆಲೇ!"
-  },
-  {
-    num: "೪",
-    text: "ಹೊರಳುಗಣ್ಣಿನ ಚೆಲುವೆ! ದಿಟ್ಟಿಯನೆಲ್ಲೊ ದೂರಕೆ ಇಟ್ಟೆಯೆ?<br>ಯಾವ ದೆಸೆವಂತನನು ಮೊದಲಲಿ ನೀನು ನೋಡಲು ಬಯಸಿಹೆ?<br>ಚಿತ್ರದಲ್ಲಿರುವಂತೆ ಕೈಕಾಲಲುಗಿಸದೆ ಮನದಲ್ಲಿಯೇ<br>ನೆನೆದು ಅವನನೆ ಕಣ್ಣ ಮುಚ್ಚುತ ಕೈಯ ಗಲ್ಲಕೆ ಹಚ್ಚಿಹೆ?"
-  },
-  {
-    num: "೫",
-    text: "ಊರಿನಿಂದಲಿಯಿನಿಯ ಮರಳಿಬಂದಿರುವಂದು ನೂರಾಸೆಗಳಲಿ ದಿನವ<br>ನ್ನೆಂತೊ ಕಳೆಯುತ ಸಂಜೆ ಕೋಣೆಯನು ಸೇರಿದರೆ ಗೆಳತಿಯರ ಹರಟೆನಿಲದೇ<br>ಹೋಗಿರಲು ತವಕದಲಿ ಏನೊ ಕಚ್ಚಿತುಯೆನುತ ರೇಸಿಮೆಯ ಮೇಲುಡುಗೆಯ<br>ಎಸೆದಳೀ ಬೆಡಗಿ ನಲ್ಲನ ಸೇರುವಾಸೆಯಲಿ ದೀಪವನು ನಂದಿಸುತಲಿ!"
-  },
-  {
-    num: "೬",
-    text: "ಆಗಸದಿ ಮಳೆ ಮೋಡ ಮೋರೆದಿರೆ ಕಣ್ಣು ತುಂಬಿಸಿ ಕೋಮಲೆ<br>\"ನಲ್ಲ ಪಯಣಕೆ ನೀನು ಹೋದರೆ\" ಎನಲು ಮಾತೇ ಕಟ್ಟಿರೆ<br>ನನ್ನ ಬಟ್ಟೆಯ ಹಿಡಿದದೆಂತೋ ನೆಲವ ಕೆರೆಯುತ ಸುಮ್ಮನೆ<br>ನಿಂತು ಬಿಟ್ಟುದ ಮಾತಿನಲಿ ನಾನಿಂದು ಹೇಳಲು ಸಾಧ್ಯವೆ?"
-  },
-  {
-    num: "೭",
-    text: "ನಲ್ಲ ಮಂಚಕೆ ಬರಲು ತನ್ನಿಂತಾನೆ ಗಂಟದು ಕಳಚಿರೆ<br>ಬಟ್ಟೆ ಸಡಿಲಿರೆ ಸೊಂಟದೊಳುವೊಡ್ಯಾಣವೆಲ್ಲೋ ನಿಂತಿರೆ<br>ಮುನ್ನ ಕೇಳೇ ಗೆಳತಿ! ಪ್ರಿಯತಮನೊಡಲ ಸಂಗದಿ ನಾನಿರೆ<br>ಮತ್ತೆ ಯಾರವ? ಯಾರು ನಾ? ಹೇಗಾದುದೆಂಬುದ ಮರೆತೆನೆ!"
-  },
-  {
-    num: "೮",
-    text: "ಹುಬ್ಬನೇರಿಸುತ ನಡೆಯೆ ಹೋಗೋಣ ಎಂದು ತೋರಲವನು<br>ಕಣ್ಣೆರಡ ತಿರುಗಿಸುತ್ತ ಮಾತಿರದೆ ತನ್ನ ಒಪ್ಪಿಗೆಯನು<br>ಸದ್ದಿರದೆಲೆಯವಳು ತಿಳಿಸೆ ಹಿರಿಯರೆದುರುಗಡೆ ಜೋಡಿಯಂತಿಂತು<br>ಸನ್ನೆಯಲೆ ಎಲ್ಲಿ ಸೇರಬೇಕೆನುತ ಕೂಡಿ ನಿಶ್ಚಯಿಸಿತು"
-  },
-  {
-    num: "೯",
-    text: "\"ಇನಿಯೆ ದಿನಗಳ ಮುಚ್ಚಿ ಕಣ್ಣನು ಹೇಗೊ ಎಂತೋ ಕಳೆಯೆ, ನೀ\"<br>\"ಒಳಿತು! ಕಂಗಳ ಮುಚ್ಚಿ ಬಿಡುವೆನು ದಿಕ್ಕು ತೋಚದ ಮುನ್ನವೇ\"<br>\"ಬೇಗ ಮರಳುವೆ!\" \"ಒಳ್ಳೆ ಗೆಳೆಯರು ಹರಸುತಿದ್ದರೆ ಖಂಡಿತ\"<br>\"ಒಸಗೆಯೇನಿದೆ?\" \"ನೀಡು ಬಯಸಿದೆಡೆಯಲಿ ಬೊಗಸೆಯ ಕಂಬನಿ\""
-  },
-  {
-    num: "೧೦",
-    text: "ಇರುಳಿನಲಿ ಸುರಿವಮಳೆ ಕಾರ್ಮುಗಿಲ ಗುಡುಗುಗಳ ಕೇಳಿ ಕಂಗೆಟ್ಟಾತನು<br>ಊರಿನಲ್ಲೊಬ್ಬಳೇ ನಿಟ್ಟುಸಿರಿನಲಿ ನವೆಯುತಿರುವ ಹುಡುಗಿಯನೆ ನೆನೆದು<br>ಪಯಣಿಗನು ರಾತ್ರಿಯಿಡಿ ಬಿರಿದ ಕೊರಲಲ್ಲಿ ತಾ ಗೋಳಾಡುತಿರುವ ದನಿಯ<br>ಕೇಳಿ ಹಳ್ಳಿಗರಂದೆ ಮುಡಿವು ಮಾಡಿದರೆಡೆಯ ಕೊಡೆವೆಂದು ಪಯಣಿಗರಿಗೆ"
-  }
+  { num:"೧", text:"ಮಂಚದಿಂದೇಳುತಲಿ ಮನೆಯೊಳಗೆ ಯಾರಿಲ್ಲವೆಂಬುದನು ನೆನೆಯುತ್ತಲಷ್ಟು ಹೊತ್ತು<br>ನೆವದ ಕಡುನಿದ್ದೆಯಲ್ಲಿರುವ ಪತಿ ಮೊಗವನ್ನು ತಾನೊಂದೆಸಮ ನೋಡಿದೀಕೋಮಲೆ<br>ನೆಮ್ಮದಿಯ ತಾಳಿ ಮುತ್ತನ್ನೀಡೆ ಗಲ್ಲವದು ನವಿರೇಳುತಿರುವುದನು ಕಂಡಾಗಲೇ<br>ನಾಚಿಕೆಯ ಮೈವೆತ್ತು ತಲೆಯನ್ನು ಬಾಗಿಸಿರೆ ಗಹಗಹಿಸಿ ನಗುನಗುತಲವ ಮುತ್ತನಿಟ್ಟ" },
+  { num:"೨", text:"ತನ್ನ ಬಿಲ್ಲಿನ ಹೆದೆಯ ಸೆಳೆಯುತಿರೆ ಅಂಬಿಕೆಯು<br>ಖಟಕಾಮುಖದ ಮುದ್ರೆ ತೋರುವಂತೆ<br>ಒಟ್ಟು ಸೇರಿದ ಬೆರಳ ಚಿಗುರಂಥ ತುದಿಯಲ್ಲಿ<br>ಹೊಳಪಾದ ಉಗುರುಗಳು ಗೊಂಚಲಂತೆ<br>ಮೆರೆವ ಕಿವಿಯೋಲೆ ಬಳಿ ಹೂ ಜೇನ ಸವಿಯಲಿಕೆ<br>ಸುಳಿವ ದುಂಬಿಗಳಂತೆ ಭಾಸವಾಗೆ<br>ಆ ದೇವಿ ತನ್ನ ಕಡೆಗಣ್ಣಿನಲಿ ಬೀರುತಿಹ<br>ನೋಟಗಳೆ ನಿನ್ನನ್ನು ಕಾಪಾಡಲಿ" },
+  { num:"೩", text:"ಕಾತರತೆಯಿರದೆದೆಯು ಝಲ್ಲೆನೆದೆಯೇ ಮೈ ನವಿರೇಳದೇ<br>ಮೊಗವು ತುಸುವೂ ಬೆವರದಿದ್ದೆನೆ ಕಪಟಿ ಕಾಣುವ ತನಕವೇ<br>ನೋಡಿದೊಡನೆಯೆ ಮನದಧೈರ್ಯವನಿನಿಯ ಸೆಳೆದಿರೆ ಕೂಡಲೇ<br>ಜತನದಲಿ ಕೂಡಿಟ್ಟ ಬಿಂಕವನೆಂತು ಪಡೆಯಲಿ ಪೇಳೆಲೇ!" },
+  { num:"೪", text:"ಹೊರಳುಗಣ್ಣಿನ ಚೆಲುವೆ! ದಿಟ್ಟಿಯನೆಲ್ಲೊ ದೂರಕೆ ಇಟ್ಟೆಯೆ?<br>ಯಾವ ದೆಸೆವಂತನನು ಮೊದಲಲಿ ನೀನು ನೋಡಲು ಬಯಸಿಹೆ?<br>ಚಿತ್ರದಲ್ಲಿರುವಂತೆ ಕೈಕಾಲಲುಗಿಸದೆ ಮನದಲ್ಲಿಯೇ<br>ನೆನೆದು ಅವನನೆ ಕಣ್ಣ ಮುಚ್ಚುತ ಕೈಯ ಗಲ್ಲಕೆ ಹಚ್ಚಿಹೆ?" },
+  { num:"೫", text:"ಊರಿನಿಂದಲಿಯಿನಿಯ ಮರಳಿಬಂದಿರುವಂದು ನೂರಾಸೆಗಳಲಿ ದಿನವ<br>ನ್ನೆಂತೊ ಕಳೆಯುತ ಸಂಜೆ ಕೋಣೆಯನು ಸೇರಿದರೆ ಗೆಳತಿಯರ ಹರಟೆನಿಲದೇ<br>ಹೋಗಿರಲು ತವಕದಲಿ ಏನೊ ಕಚ್ಚಿತುಯೆನುತ ರೇಸಿಮೆಯ ಮೇಲುಡುಗೆಯ<br>ಎಸೆದಳೀ ಬೆಡಗಿ ನಲ್ಲನ ಸೇರುವಾಸೆಯಲಿ ದೀಪವನು ನಂದಿಸುತಲಿ!" },
+  { num:"೬", text:"ಆಗಸದಿ ಮಳೆ ಮೋಡ ಮೋರೆದಿರೆ ಕಣ್ಣು ತುಂಬಿಸಿ ಕೋಮಲೆ<br>\"ನಲ್ಲ ಪಯಣಕೆ ನೀನು ಹೋದರೆ\" ಎನಲು ಮಾತೇ ಕಟ್ಟಿರೆ<br>ನನ್ನ ಬಟ್ಟೆಯ ಹಿಡಿದದೆಂತೋ ನೆಲವ ಕೆರೆಯುತ ಸುಮ್ಮನೆ<br>ನಿಂತು ಬಿಟ್ಟುದ ಮಾತಿನಲಿ ನಾನಿಂದು ಹೇಳಲು ಸಾಧ್ಯವೆ?" },
+  { num:"೭", text:"ನಲ್ಲ ಮಂಚಕೆ ಬರಲು ತನ್ನಿಂತಾನೆ ಗಂಟದು ಕಳಚಿರೆ<br>ಬಟ್ಟೆ ಸಡಿಲಿರೆ ಸೊಂಟದೊಳುವೊಡ್ಯಾಣವೆಲ್ಲೋ ನಿಂತಿರೆ<br>ಮುನ್ನ ಕೇಳೇ ಗೆಳತಿ! ಪ್ರಿಯತಮನೊಡಲ ಸಂಗದಿ ನಾನಿರೆ<br>ಮತ್ತೆ ಯಾರವ? ಯಾರು ನಾ? ಹೇಗಾದುದೆಂಬುದ ಮರೆತೆನೆ!" },
+  { num:"೮", text:"ಹುಬ್ಬನೇರಿಸುತ ನಡೆಯೆ ಹೋಗೋಣ ಎಂದು ತೋರಲವನು<br>ಕಣ್ಣೆರಡ ತಿರುಗಿಸುತ್ತ ಮಾತಿರದೆ ತನ್ನ ಒಪ್ಪಿಗೆಯನು<br>ಸದ್ದಿರದೆಲೆಯವಳು ತಿಳಿಸೆ ಹಿರಿಯರೆದುರುಗಡೆ ಜೋಡಿಯಂತಿಂತು<br>ಸನ್ನೆಯಲೆ ಎಲ್ಲಿ ಸೇರಬೇಕೆನುತ ಕೂಡಿ ನಿಶ್ಚಯಿಸಿತು" },
+  { num:"೯", text:"\"ಇನಿಯೆ ದಿನಗಳ ಮುಚ್ಚಿ ಕಣ್ಣನು ಹೇಗೊ ಎಂತೋ ಕಳೆಯೆ, ನೀ\"<br>\"ಒಳಿತು! ಕಂಗಳ ಮುಚ್ಚಿ ಬಿಡುವೆನು ದಿಕ್ಕು ತೋಚದ ಮುನ್ನವೇ\"<br>\"ಬೇಗ ಮರಳುವೆ!\" \"ಒಳ್ಳೆ ಗೆಳೆಯರು ಹರಸುತಿದ್ದರೆ ಖಂಡಿತ\"<br>\"ಒಸಗೆಯೇನಿದೆ?\" \"ನೀಡು ಬಯಸಿದೆಡೆಯಲಿ ಬೊಗಸೆಯ ಕಂಬನಿ\"" },
+  { num:"೧೦", text:"ಇರುಳಿನಲಿ ಸುರಿವಮಳೆ ಕಾರ್ಮುಗಿಲ ಗುಡುಗುಗಳ ಕೇಳಿ ಕಂಗೆಟ್ಟಾತನು<br>ಊರಿನಲ್ಲೊಬ್ಬಳೇ ನಿಟ್ಟುಸಿರಿನಲಿ ನವೆಯುತಿರುವ ಹುಡುಗಿಯನೆ ನೆನೆದು<br>ಪಯಣಿಗನು ರಾತ್ರಿಯಿಡಿ ಬಿರಿದ ಕೊರಲಲ್ಲಿ ತಾ ಗೋಳಾಡುತಿರುವ ದನಿಯ<br>ಕೇಳಿ ಹಳ್ಳಿಗರಂದೆ ಮುಡಿವು ಮಾಡಿದರೆಡೆಯ ಕೊಡೆವೆಂದು ಪಯಣಿಗರಿಗೆ" }
 ];
 
 function injectRandomVerse() {
   const container = document.getElementById('dynamicVerse');
   if (!container || VERSES_POOL.length === 0) return;
-  const idx = Math.floor(Math.random() * VERSES_POOL.length);
-  const picked = VERSES_POOL[idx];
+  const picked = VERSES_POOL[Math.floor(Math.random() * VERSES_POOL.length)];
   container.innerHTML = `${picked.text}<span class="verse-num">— ${picked.num}</span>`;
 }
 
@@ -554,60 +410,55 @@ let currentLang = 'en';
 
 function applyLocalization(l) {
   currentLang = l;
+  document.getElementById('htmlRoot').lang = l === 'kn' ? 'kn' : 'en';
+  document.getElementById('btnEN').classList.toggle('active', l === 'en');
+  document.getElementById('btnKN').classList.toggle('active', l === 'kn');
   renderNav(l);
+
   const s = STR[l];
 
   document.getElementById('bookSynopsis').textContent = s.synopsis;
-  document.getElementById('bookSynopsis').className = 'book-synopsis' + (l === 'kn' ? ' kn' : '');
-  document.getElementById('btnBuy').textContent = s.buyText;
-  document.getElementById('btnBuy').className = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('bookSynopsis').className   = 'book-synopsis' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('btnBuy').textContent       = s.buyText;
+  document.getElementById('btnBuy').className         = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
   document.getElementById('btnBuyExotic').textContent = s.buyExoticText;
-  document.getElementById('btnBuyExotic').className = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnBuyExotic').className   = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
   document.getElementById('btnGoodreads').textContent = s.grText;
-  document.getElementById('btnGoodreads').className = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnGoodreads').className   = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
 
-  document.getElementById('sampleHeading').textContent = s.sampleHeading;
-  document.getElementById('sampleHeading').className = 'section-heading' + (l === 'kn' ? ' kn' : '');
-
-  /* Reviews */
+  document.getElementById('sampleHeading').textContent  = s.sampleHeading;
+  document.getElementById('sampleHeading').className    = 'section-heading' + (l === 'kn' ? ' kn' : '');
   document.getElementById('reviewsHeading').textContent = s.reviewsHeading;
-  document.getElementById('reviewsHeading').className = 'section-heading' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('reviewsHeading').className   = 'section-heading' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('mediaHeading').textContent   = s.mediaHeading;
+  document.getElementById('mediaHeading').className     = 'section-heading' + (l === 'kn' ? ' kn' : '');
+
   s.reviews.forEach((r, i) => {
-    const n = i + 1;
-    const textEl = document.getElementById('reviewText' + n);
+    const n     = i + 1;
+    const textEl = document.getElementById('reviewText'   + n);
     const srcEl  = document.getElementById('reviewSource' + n);
-    if (textEl) {
-      textEl.textContent = r.text;
-      textEl.className = 'review-text' + (l === 'kn' ? ' kn' : '');
-    }
-    if (srcEl) {
-      srcEl.innerHTML = r.url
-        ? `<a href="${r.url}" target="_blank">${r.source}</a>`
-        : r.source;
-    }
+    if (textEl) { textEl.textContent = r.text; textEl.className = 'review-text' + (l === 'kn' ? ' kn' : ''); }
+    if (srcEl)  { srcEl.innerHTML = r.url ? `<a href="${r.url}" target="_blank">${r.source}</a>` : r.source; }
   });
 
-  document.getElementById('mediaHeading').textContent = s.mediaHeading;
-  document.getElementById('mediaHeading').className = 'section-heading' + (l === 'kn' ? ' kn' : '');
-
   for (let i = 1; i <= 11; i++) {
-    const lblEl   = document.getElementById('lblMedia' + i);
+    const lblEl   = document.getElementById('lblMedia'   + i);
     const titleEl = document.getElementById('titleMedia' + i);
-    if (lblEl) {
-      lblEl.textContent = s['lbl' + i] || s.lbl1;
-      lblEl.className = 'media-label' + (l === 'kn' ? ' kn' : '');
-    }
-    if (titleEl) {
-      titleEl.textContent = s['t' + i];
-      titleEl.className = 'media-title' + (l === 'kn' ? ' kn' : '');
-    }
+    if (lblEl)   { lblEl.textContent   = s['lbl' + i] || ''; lblEl.className   = 'media-label' + (l === 'kn' ? ' kn' : ''); }
+    if (titleEl) { titleEl.textContent = s['t'   + i] || ''; titleEl.className = 'media-title' + (l === 'kn' ? ' kn' : ''); }
   }
 
   document.getElementById('footerEl').textContent = s.footer;
-  document.getElementById('footerEl').className = l === 'kn' ? 'kn' : '';
+  document.getElementById('footerEl').className   = l === 'kn' ? 'kn' : '';
 }
 
-// Bootstrap
+document.getElementById('langToggle').addEventListener('click', e => {
+  const btn = e.target.closest('.lang-btn');
+  if (!btn) return;
+  applyLocalization(btn.id === 'btnKN' ? 'kn' : 'en');
+});
+
+// Bootstrap — read ?lang=kn from URL or default to EN
 const urlParams = new URLSearchParams(window.location.search);
 applyLocalization(urlParams.get('lang') === 'kn' ? 'kn' : 'en');
 injectRandomVerse();
