@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="en" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,11 +23,24 @@ body {
   padding: 0 0 60px; font-size: 16px; line-height: 1.6;
 }
 
-/* ── Navigation ── */
-.nav-back { padding: 20px 20px 0; font-size: 0.85em; letter-spacing: 0.05em; }
-.nav-back a { color: var(--gold-dim); text-decoration: none; }
-.nav-back a:hover { text-decoration: underline; color: var(--gold); }
-.nav-back.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.8em; }
+/* ── Top nav bar ── */
+.site-nav { background: var(--header-bg); border-bottom: 1px solid var(--border); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 42px; position: sticky; top: 0; z-index: 100; }
+.nav-home { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--gold); text-decoration: none; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+.nav-home.kn { font-family: 'Noto Serif Kannada', serif; letter-spacing: 0.05em; text-transform: none; font-size: 0.88rem; }
+.nav-home:hover { text-decoration: underline; }
+.nav-links { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link { font-family: 'EB Garamond', serif; font-size: 0.78rem; color: var(--meta); text-decoration: none; padding: 0 10px; line-height: 42px; white-space: nowrap; border-left: 1px solid var(--border); transition: color 0.15s, background 0.15s; }
+.nav-link:first-child { border-left: none; }
+.nav-link:hover { color: var(--gold); background: rgba(139,94,26,0.06); }
+.nav-link.active-section { color: var(--gold); font-weight: 600; }
+.nav-link.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.72rem; }
+
+/* ── Lang toggle ── */
+.lang-toggle { background: var(--header-bg); border: 1px solid var(--border-light); border-radius: 20px; padding: 5px 4px; display: flex; gap: 3px; flex-shrink: 0; }
+.lang-btn { font-size: 0.75rem; padding: 4px 10px; border-radius: 16px; border: none; background: none; cursor: pointer; color: var(--meta); font-family: 'EB Garamond', serif; transition: all 0.18s; }
+.lang-btn.active { background: var(--gold); color: #fff; font-weight: 600; }
+.lang-btn.kn-btn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.78rem; }
 
 /* ── Book Hero Layout ── */
 .book-hero {
@@ -43,7 +56,7 @@ body {
   display: flex; align-items: center; justify-content: center; position: relative;
   cursor: pointer;
 }
-.book-cover img { width: 100%; height: 100%; object-fit: cover; }
+.book-cover img { width: 100%; height: 100%; object-fit: contain; }
 .cover-label {
   position: absolute; bottom: 0; width: 100%; background: rgba(26,18,8,0.75);
   color: #fff; font-size: 0.65rem; text-align: center; padding: 3px 0;
@@ -92,18 +105,31 @@ body {
 /* ── Footer ── */
 .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 48px 20px 0; }
 footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.82em; }
+footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
-@media (max-width: 700px) {
+/* ── Responsive ── */
+@media (max-width: 768px) {
   .book-hero { flex-direction: column; align-items: center; text-align: center; }
   .action-hub { justify-content: center; }
+  .site-nav { flex-wrap: wrap; padding: 8px 12px; min-height: unset; }
+  .nav-home { width: 100%; padding-bottom: 6px; line-height: 1.4; }
+  .nav-links { width: 100%; overflow-x: auto; }
+  .nav-link { font-size: 0.72rem; padding: 0 8px; line-height: 32px; }
+  .lang-toggle { margin: 4px 0; }
 }
 </style>
 </head>
 <body>
 
-<div class="nav-back" id="navBack">
-  <a href="index.html">← Back to Books</a>
-</div>
+<!-- ── Sticky nav bar with lang toggle on the right ── -->
+<nav class="site-nav" id="siteNav" aria-label="Site navigation">
+  <a class="nav-home" id="navHome" href="https://hamsanandi.github.io/">Hamsanandi</a>
+  <div class="nav-links" id="navLinks"></div>
+  <div class="lang-toggle" id="langToggle">
+    <button class="lang-btn active" id="btnEN">EN</button>
+    <button class="lang-btn kn-btn" id="btnKN">ಕನ್ನಡ</button>
+  </div>
+</nav>
 
 <section class="book-hero">
   <div class="cover-gallery">
@@ -112,7 +138,6 @@ footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.
       <div class="book-cover-placeholder-text" style="display:none;">ಹಂಸನಾದ<br><small>(Front)</small></div>
       <div class="cover-label">Front</div>
     </a>
-    
     <a href="covers/hamsanada-back.jpg" target="_blank" class="book-cover" title="View Full Back Cover">
       <img src="covers/hamsanada-back.jpg" alt="Back Cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div class="book-cover-placeholder-text" style="display:none;">ಹಂಸನಾದ<br><small>(Back)</small></div>
@@ -123,8 +148,7 @@ footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.
   <div class="book-details">
     <h1 class="book-title" id="bookTitle">ಹಂಸನಾದ</h1>
     <span class="book-roman">Hamsanada</span>
-    <p class="book-synopsis" id="bookSynopsis">A curated anthology of reflective verses and compositions grounded in the spiritual traditions of India. This collection explores the nuances of devotion and philosophical inquiry through classical metric structures.</p>
-    
+    <p class="book-synopsis" id="bookSynopsis"></p>
     <div class="action-hub" id="actionHub">
       <a href="https://www.totalkannada.com/products/6661597a-89e7-44df-8ed4-dae3c9881594.html" target="_blank" class="btn btn-primary" id="btnTotalKannada">Buy on TotalKannada</a>
       <a href="https://www.flipkart.com/hamsanaada/p/itmd2adqby62g9cx" target="_blank" class="btn btn-secondary" id="btnFlipkart">Buy on Flipkart</a>
@@ -140,7 +164,6 @@ footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.
     ಹಿರಿಯರಿಂದಾಗದಿದ್ದರೆ ಏನು?<br>
     ದಾಹವಾರಿಸಲು ಆಗದು ಕಡಲಿಗೆ<br>
     ಬಾವಿನೀರದನು ತಣಿಸದೇನು?<br>
-    
     <span class="sanskrit-title">ಸಂಸ್ಕೃತ ಮೂಲ:</span>
     <span class="sanskrit-text">
       ಉಪಕರ್ತುಂ ಯಥಾ ಸ್ವಲ್ಪಃ ಸಮರ್ಥಾ ನ ತಥಾ ಮಹಾನ್ ।<br>
@@ -149,7 +172,7 @@ footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.
     <br>
     <span class="sanskrit-text" style="font-family: serif;">
       उपकरतुं यथा स्वल्पः समर्थो न तथा महान् ।<br>
-      प्रायಃ कूपस्तृषां हन्ति न कदापि तु वारिधिः ॥
+      प्रायः कूपस्तृषां हन्ति न कदापि तु वारिधिः ॥
     </span>
   </div>
 </section>
@@ -158,57 +181,81 @@ footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.
 <footer id="footerEl">Hosted on GitHub Pages</footer>
 
 <script>
+const NAV_SECTIONS = [
+  { en:"Compositions",      kn:"ರಚನೆಗಳು",       url:"https://hamsanandi.github.io/compositions/" },
+  { en:"Articles",          kn:"ಲೇಖನಗಳು",        url:"https://hamsanandi.github.io/articles/" },
+  { en:"Books",             kn:"ಪುಸ್ತಕಗಳು",      url:"https://hamsanandi.github.io/books/", current:true },
+  { en:"Metrical Poetry",   kn:"ಛಂದೋಬದ್ಧ ಕಾವ್ಯ", url:"https://hamsanandi.github.io/poetry/" },
+  { en:"Stage Productions", kn:"ರಂಗಪ್ರಯೋಗಗಳು",  url:"https://hamsanandi.github.io/stage-productions/" },
+  { en:"Gamaka Vachana",    kn:"ಗಮಕ ವಾಚನ",       url:"https://hamsanandi.github.io/gamaka-vachana/" },
+  { en:"Translations",      kn:"ಅನುವಾದಗಳು",      url:"https://hamsanandi.github.io/translations/" },
+  { en:"Reviews",           kn:"ವಿಮರ್ಶೆಗಳು",     url:"https://hamsanandi.github.io/reviews/" }
+];
+
+function renderNav(l) {
+  const navHome = document.getElementById('navHome');
+  navHome.textContent = l === 'kn' ? 'ಹಂಸಾನಂದಿ' : 'Hamsanandi';
+  navHome.className   = l === 'kn' ? 'nav-home kn' : 'nav-home';
+  const navLinks = document.getElementById('navLinks');
+  navLinks.innerHTML = '';
+  NAV_SECTIONS.forEach(sec => {
+    const a = document.createElement('a');
+    a.href        = sec.url;
+    a.textContent = sec[l];
+    a.className   = 'nav-link' + (l === 'kn' ? ' kn' : '') + (sec.current ? ' active-section' : '');
+    navLinks.appendChild(a);
+  });
+}
+
 const STR = {
   en: {
-    backText: "← Back to Books",
     synopsis: "A curated anthology of reflective verses and compositions grounded in the spiritual traditions of India. This collection explores the nuances of devotion and philosophical inquiry through classical metric structures.",
     btnTotal: "Buy on TotalKannada",
-    btnFlip: "Buy on Flipkart",
-    grText: "Goodreads",
+    btnFlip:  "Buy on Flipkart",
+    grText:   "Goodreads",
     sampleHeading: "Look Inside — Sample Verses",
     footer: "Hosted on GitHub Pages"
   },
   kn: {
-    backText: "← ಪುಸ್ತಕಗಳ ಪುಟಕ್ಕೆ",
     synopsis: "ಭಾರತೀಯ ಆಧ್ಯಾತ್ಮಿಕ ಮತ್ತು ಕಾವ್ಯ ಪರಂಪರೆಯ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ಮೂಡಿಬಂದ ಆಯ್ದ ಭಕ್ತಿಪ್ರಧಾನ ಕೃತಿಗಳು ಮತ್ತು ತತ್ವಚಿಂತನೆಯ ಮುಕ್ತಕಗಳ ಸಂಕಲನ. ಶಾಸ್ತ್ರೀಯ ಛಂದೋರೂಪಗಳಲ್ಲಿ ಕಾವ್ಯದ ಸೌಂದರ್ಯವನ್ನು ಇಲ್ಲಿ ಅನ್ವೇಷಿಸಲಾಗಿದೆ.",
     btnTotal: "ಟೋಟಲ್ ಕನ್ನಡದಲ್ಲಿ ಕೊಳ್ಳಿ",
-    btnFlip: "ಫ್ಲಿಪ್‌ಕಾರ್ಟ್‌ನಲ್ಲಿ ಕೊಳ್ಳಿ",
-    grText: "ಗುಡ್‌ರೀಡ್ಸ್ ಪುಟ",
+    btnFlip:  "ಫ್ಲಿಪ್‌ಕಾರ್ಟ್‌ನಲ್ಲಿ ಕೊಳ್ಳಿ",
+    grText:   "ಗುಡ್‌ರೀಡ್ಸ್ ಪುಟ",
     sampleHeading: "ಪುಸ್ತಕದ ಒಳನೋಟ — ಆಯ್ದ ಪದ್ಯಗಳು",
     footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ"
   }
 };
 
 function applyLocalization(l) {
-  const langKey = (l === 'kn' || l === 'en') ? l : 'en';
-  const s = STR[langKey];
-  
-  document.getElementById('navBack').querySelector('a').textContent = s.backText;
-  document.getElementById('navBack').className = 'nav-back' + (langKey === 'kn' ? ' kn' : '');
-  
-  document.getElementById('bookSynopsis').textContent = s.synopsis;
-  document.getElementById('bookSynopsis').className = 'book-synopsis' + (langKey === 'kn' ? ' kn' : '');
-  
+  document.getElementById('htmlRoot').lang = l === 'kn' ? 'kn' : 'en';
+  document.getElementById('btnEN').classList.toggle('active', l === 'en');
+  document.getElementById('btnKN').classList.toggle('active', l === 'kn');
+  renderNav(l);
+
+  const s = STR[l];
+  document.getElementById('bookSynopsis').textContent    = s.synopsis;
+  document.getElementById('bookSynopsis').className      = 'book-synopsis' + (l === 'kn' ? ' kn' : '');
   document.getElementById('btnTotalKannada').textContent = s.btnTotal;
-  document.getElementById('btnTotalKannada').className = 'btn btn-primary' + (langKey === 'kn' ? ' kn-btn' : '');
-  
-  document.getElementById('btnFlipkart').textContent = s.btnFlip;
-  document.getElementById('btnFlipkart').className = 'btn btn-secondary' + (langKey === 'kn' ? ' kn-btn' : '');
-  
-  document.getElementById('btnGoodreads').textContent = s.grText;
-  document.getElementById('btnGoodreads').className = 'btn btn-secondary' + (langKey === 'kn' ? ' kn-btn' : '');
-  
-  document.getElementById('sampleHeading').textContent = s.sampleHeading;
-  document.getElementById('sampleHeading').className = 'section-heading' + (langKey === 'kn' ? ' kn' : '');
-  
-  document.getElementById('footerEl').textContent = s.footer;
+  document.getElementById('btnTotalKannada').className   = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnFlipkart').textContent     = s.btnFlip;
+  document.getElementById('btnFlipkart').className       = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnGoodreads').textContent    = s.grText;
+  document.getElementById('btnGoodreads').className      = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('sampleHeading').textContent   = s.sampleHeading;
+  document.getElementById('sampleHeading').className     = 'section-heading' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('footerEl').textContent        = s.footer;
+  document.getElementById('footerEl').className          = l === 'kn' ? 'kn' : '';
 }
 
-const urlParams = new URLSearchParams(window.location.search);
-const langParam = urlParams.get('lang');
-const sanitizedLang = langParam ? langParam.toLowerCase() : 'en';
+document.getElementById('langToggle').addEventListener('click', e => {
+  const btn = e.target.closest('.lang-btn');
+  if (!btn) return;
+  applyLocalization(btn.id === 'btnKN' ? 'kn' : 'en');
+});
 
-applyLocalization(sanitizedLang);
+// Bootstrap — read ?lang=kn from URL or default to EN
+const urlParams = new URLSearchParams(window.location.search);
+applyLocalization(urlParams.get('lang') === 'kn' ? 'kn' : 'en');
 </script>
 </body>
 </html>
