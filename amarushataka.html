@@ -23,11 +23,18 @@ body {
   padding: 0 0 60px; font-size: 16px; line-height: 1.6;
 }
 
-/* ── Navigation ── */
-.nav-back { padding: 20px 20px 0; font-size: 0.85em; letter-spacing: 0.05em; }
-.nav-back a { color: var(--gold-dim); text-decoration: none; }
-.nav-back a:hover { text-decoration: underline; color: var(--gold); }
-.nav-back.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.8em; }
+/* ── Top nav bar ── */
+.site-nav { background: var(--header-bg); border-bottom: 1px solid var(--border); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 42px; position: sticky; top: 0; z-index: 100; }
+.nav-home { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--gold); text-decoration: none; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+.nav-home.kn { font-family: 'Noto Serif Kannada', serif; letter-spacing: 0.05em; text-transform: none; font-size: 0.88rem; }
+.nav-home:hover { text-decoration: underline; }
+.nav-links { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link { font-family: 'EB Garamond', serif; font-size: 0.78rem; color: var(--meta); text-decoration: none; padding: 0 10px; line-height: 42px; white-space: nowrap; border-left: 1px solid var(--border); transition: color 0.15s, background 0.15s; }
+.nav-link:first-child { border-left: none; }
+.nav-link:hover { color: var(--gold); background: rgba(139,94,26,0.06); }
+.nav-link.active-section { color: var(--gold); font-weight: 600; }
+.nav-link.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.72rem; }
 
 /* ── Book Hero Layout ── */
 .book-hero {
@@ -43,7 +50,7 @@ body {
   display: flex; align-items: center; justify-content: center; position: relative;
   cursor: pointer;
 }
-.book-cover img { width: 100%; height: 100%; object-fit: cover; }
+.book-cover img { width: 100%; height: 100%; object-fit: contain; }
 .cover-label {
   position: absolute; bottom: 0; width: 100%; background: rgba(26,18,8,0.75);
   color: #fff; font-size: 0.65rem; text-align: center; padding: 3px 0;
@@ -148,7 +155,6 @@ body {
 .media-label {
   font-size: 0.7em; letter-spacing: 0.1em; color: var(--gold-dim);
   font-family: 'Cinzel', serif; margin-bottom: 4px; display: block;
-  /* NOTE: no text-transform: uppercase — titles are sentence-cased */
 }
 .media-label.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.72rem; letter-spacing: 0; }
 .media-title {
@@ -171,6 +177,10 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
   .reviews-grid { grid-template-columns: 1fr; }
   .book-hero { flex-direction: column; align-items: center; text-align: center; }
   .action-hub { justify-content: center; }
+  .site-nav { flex-wrap: wrap; padding: 8px 12px; min-height: unset; }
+  .nav-home { width: 100%; padding-bottom: 6px; line-height: 1.4; }
+  .nav-links { width: 100%; overflow-x: auto; }
+  .nav-link { font-size: 0.72rem; padding: 0 8px; line-height: 32px; }
 }
 @media (max-width: 520px) {
   .media-grid { grid-template-columns: 1fr; }
@@ -179,9 +189,11 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 </head>
 <body>
 
-<div class="nav-back" id="navBack">
-  <a href="index.html">← Back to Books</a>
-</div>
+<!-- ── Sticky nav bar ── -->
+<nav class="site-nav" id="siteNav" aria-label="Site navigation">
+  <a class="nav-home" id="navHome" href="https://hamsanandi.github.io/">Hamsanandi</a>
+  <div class="nav-links" id="navLinks"></div>
+</nav>
 
 <section class="book-hero">
   <div class="cover-gallery">
@@ -379,6 +391,32 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 <footer id="footerEl">Hosted on GitHub Pages</footer>
 
 <script>
+const NAV_SECTIONS = [
+  { en:"Compositions",      kn:"ರಚನೆಗಳು",        url:"https://hamsanandi.github.io/compositions/" },
+  { en:"Articles",          kn:"ಲೇಖನಗಳು",         url:"https://hamsanandi.github.io/articles/" },
+  { en:"Books",             kn:"ಪುಸ್ತಕಗಳು",       url:"https://hamsanandi.github.io/books/", current:true },
+  { en:"Metrical Poetry",   kn:"ಛಂದೋಬದ್ಧ ಕಾವ್ಯ",  url:"https://hamsanandi.github.io/poetry/" },
+  { en:"Stage Productions", kn:"ರಂಗಪ್ರಯೋಗಗಳು",   url:"https://hamsanandi.github.io/stage-productions/" },
+  { en:"Gamaka Vachana",    kn:"ಗಮಕ ವಾಚನ",        url:"https://hamsanandi.github.io/gamaka-vachana/" },
+  { en:"Translations",      kn:"ಅನುವಾದಗಳು",       url:"https://hamsanandi.github.io/translations/" },
+  { en:"Reviews",           kn:"ವಿಮರ್ಶೆಗಳು",      url:"https://hamsanandi.github.io/reviews/" }
+];
+
+function renderNav(l) {
+  const navHome = document.getElementById('navHome');
+  navHome.textContent = l === 'kn' ? 'ಹಂಸಾನಂದಿ' : 'Hamsanandi';
+  navHome.className   = l === 'kn' ? 'nav-home kn' : 'nav-home';
+  const navLinks = document.getElementById('navLinks');
+  navLinks.innerHTML = '';
+  NAV_SECTIONS.forEach(sec => {
+    const a = document.createElement('a');
+    a.href        = sec.url;
+    a.textContent = sec[l];
+    a.className   = 'nav-link' + (l === 'kn' ? ' kn' : '') + (sec.current ? ' active-section' : '');
+    navLinks.appendChild(a);
+  });
+}
+
 const STR = {
   en: {
     backText: "← Back to Books",
@@ -406,14 +444,6 @@ const STR = {
     t10: "Amarushataka on Vichitramanjari",
     t11: "Shunyam Vasagrham \u2014 classical metric Kannada rendering",
     footer: "Hosted on GitHub Pages",
-
-    /* ── REVIEWS ─────────────────────────────────────────────────────
-       Each object: { text, source, url }
-       url is optional — omit or set to "" to render source as plain text.
-       To add a new review: append an object here AND add a matching
-       Kannada entry in STR.kn.reviews[], then add a new .review-card
-       block in the HTML above (copy review2, increment ids to review3).
-       ──────────────────────────────────────────────────────────────── */
     reviews: [
       {
         text:   "AmaruShataka Book review on Book Brahma: by M.R.Dattathri",
@@ -454,7 +484,6 @@ const STR = {
     t10: "ವಿಚಿತ್ರಮಂಜರಿಯಲ್ಲಿ ಅಮರುಶತಕ",
     t11: "ಅಮರುಶತಕದ ಪ್ರಸಿದ್ಧ 'ಶೂನ್ಯಂ ವಾಸಗೃಹಂ' ಶ್ಲೋಕದ ಛಂದೋಬದ್ಧ ಕನ್ನಡ ಭಾವಾನುವಾದ",
     footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ",
-
     reviews: [
       {
         text:   "ಅಮರು ಶತಕ: ಎಂ ಆರ್ ದತ್ತಾತ್ರಿ ಅವರು ಬರೆದ ಪುಸ್ತಕ ವಿಮರ್ಶೆ",
@@ -470,9 +499,6 @@ const STR = {
   }
 };
 
-/* ── Verse Pool ──
-   Fixed: removed stray Malayalam (ൂ) and Latin (u, h, kh, ma) characters
-   that had crept into the Kannada text in verses 3, 6, 8, 9, 10. ── */
 const VERSES_POOL = [
   {
     num: "೧",
@@ -528,10 +554,9 @@ let currentLang = 'en';
 
 function applyLocalization(l) {
   currentLang = l;
+  renderNav(l);
   const s = STR[l];
 
-  document.getElementById('navBack').querySelector('a').textContent = s.backText;
-  document.getElementById('navBack').className = 'nav-back' + (l === 'kn' ? ' kn' : '');
   document.getElementById('bookSynopsis').textContent = s.synopsis;
   document.getElementById('bookSynopsis').className = 'book-synopsis' + (l === 'kn' ? ' kn' : '');
   document.getElementById('btnBuy').textContent = s.buyText;
