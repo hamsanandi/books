@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="kn">
+<html lang="en" id="htmlRoot">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,11 +23,24 @@ body {
   padding: 0 0 60px; font-size: 16px; line-height: 1.6;
 }
 
-/* ── Navigation ── */
-.nav-back { padding: 20px 20px 0; font-size: 0.85em; letter-spacing: 0.05em; }
-.nav-back a { color: var(--gold-dim); text-decoration: none; }
-.nav-back a:hover { text-decoration: underline; color: var(--gold); }
-.nav-back.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.8em; }
+/* ── Top nav bar ── */
+.site-nav { background: var(--header-bg); border-bottom: 1px solid var(--border); padding: 0 20px; display: flex; align-items: center; justify-content: space-between; gap: 8px; min-height: 42px; position: sticky; top: 0; z-index: 100; }
+.nav-home { font-family: 'Cinzel', serif; font-size: 0.75rem; letter-spacing: 0.2em; color: var(--gold); text-decoration: none; text-transform: uppercase; white-space: nowrap; flex-shrink: 0; }
+.nav-home.kn { font-family: 'Noto Serif Kannada', serif; letter-spacing: 0.05em; text-transform: none; font-size: 0.88rem; }
+.nav-home:hover { text-decoration: underline; }
+.nav-links { display: flex; align-items: center; gap: 0; flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.nav-links::-webkit-scrollbar { display: none; }
+.nav-link { font-family: 'EB Garamond', serif; font-size: 0.78rem; color: var(--meta); text-decoration: none; padding: 0 10px; line-height: 42px; white-space: nowrap; border-left: 1px solid var(--border); transition: color 0.15s, background 0.15s; }
+.nav-link:first-child { border-left: none; }
+.nav-link:hover { color: var(--gold); background: rgba(139,94,26,0.06); }
+.nav-link.active-section { color: var(--gold); font-weight: 600; }
+.nav-link.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.72rem; }
+
+/* ── Lang toggle ── */
+.lang-toggle { background: var(--header-bg); border: 1px solid var(--border-light); border-radius: 20px; padding: 5px 4px; display: flex; gap: 3px; flex-shrink: 0; }
+.lang-btn { font-size: 0.75rem; padding: 4px 10px; border-radius: 16px; border: none; background: none; cursor: pointer; color: var(--meta); font-family: 'EB Garamond', serif; transition: all 0.18s; }
+.lang-btn.active { background: var(--gold); color: #fff; font-weight: 600; }
+.lang-btn.kn-btn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.78rem; }
 
 /* ── Book Hero Layout ── */
 .book-hero {
@@ -43,7 +56,7 @@ body {
   display: flex; align-items: center; justify-content: center; position: relative;
   cursor: pointer;
 }
-.book-cover img { width: 100%; height: 100%; object-fit: cover; }
+.book-cover img { width: 100%; height: 100%; object-fit: contain; }
 .cover-label {
   position: absolute; bottom: 0; width: 100%; background: rgba(26,18,8,0.75);
   color: #fff; font-size: 0.65rem; text-align: center; padding: 3px 0;
@@ -80,28 +93,41 @@ body {
 }
 .section-heading.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.88rem; letter-spacing: 0.05em; text-transform: none; }
 
-/* ── Content Section (Excerpt) ── */
+/* ── Excerpt Section ── */
 .excerpt-section {
   max-width: 580px; margin: 0 auto; padding: 25px;
   background: var(--section-bg); border: 1px solid var(--border); border-radius: 8px;
 }
-.verse-block { text-align: center; font-family: 'Noto Serif Kannada', serif; font-size: 1.05rem; line-height: 1.8; width: 100%; }
+.verse-block { font-family: 'Noto Serif Kannada', serif; font-size: 1.05rem; line-height: 1.8; width: 100%; }
 
 /* ── Footer ── */
 .section-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 48px 20px 0; }
 footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.82em; }
+footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
 
-@media (max-width: 700px) {
+/* ── Responsive ── */
+@media (max-width: 768px) {
   .book-hero { flex-direction: column; align-items: center; text-align: center; }
   .action-hub { justify-content: center; }
+  .site-nav { flex-wrap: wrap; padding: 8px 12px; min-height: unset; }
+  .nav-home { width: 100%; padding-bottom: 6px; line-height: 1.4; }
+  .nav-links { width: 100%; overflow-x: auto; }
+  .nav-link { font-size: 0.72rem; padding: 0 8px; line-height: 32px; }
+  .lang-toggle { margin: 4px 0; }
 }
 </style>
 </head>
 <body>
 
-<div class="nav-back" id="navBack">
-  <a href="index.html">← Back to Books</a>
-</div>
+<!-- ── Sticky nav bar with lang toggle on the right ── -->
+<nav class="site-nav" id="siteNav" aria-label="Site navigation">
+  <a class="nav-home" id="navHome" href="https://hamsanandi.github.io/">Hamsanandi</a>
+  <div class="nav-links" id="navLinks"></div>
+  <div class="lang-toggle" id="langToggle">
+    <button class="lang-btn active" id="btnEN">EN</button>
+    <button class="lang-btn kn-btn" id="btnKN">ಕನ್ನಡ</button>
+  </div>
+</nav>
 
 <section class="book-hero">
   <div class="cover-gallery">
@@ -110,7 +136,6 @@ footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.
       <div class="book-cover-placeholder-text" style="display:none;">ಮೂರು ರೋಚಕ ನಾಟಕಗಳು<br><small>(Front)</small></div>
       <div class="cover-label">Front</div>
     </a>
-    
     <a href="covers/natakagalu-back.jpg" target="_blank" class="book-cover" title="View Full Back Cover">
       <img src="covers/natakagalu-back.jpg" alt="Back Cover" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
       <div class="book-cover-placeholder-text" style="display:none;">ಮೂರು ರೋಚಕ ನಾಟಕಗಳು<br><small>(Back)</small></div>
@@ -121,8 +146,7 @@ footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.
   <div class="book-details">
     <h1 class="book-title" id="bookTitle">ಮೂರು ರೋಚಕ ನಾಟಕಗಳು</h1>
     <span class="book-roman">Mooru Rochaka Nāṭakagaḷu</span>
-    <p class="book-synopsis" id="bookSynopsis">An engaging compilation of three stage plays adapted to Kannada from English. Each play is excitingly bulit for stage, as well of reading experience.</p>
-    
+    <p class="book-synopsis" id="bookSynopsis"></p>
     <div class="action-hub" id="actionHub">
       <a href="https://www.google.com/books/edition/%E0%B2%AE%E0%B3%82%E0%B2%B0%E0%B3%81_%E0%B2%B0%E0%B3%8B%E0%B2%9A%E0%B2%95_%E0%B2%A8%E0%B2%BE%E0%B2%9F%E0%B2%95/7ka_EQAAQBAJ" target="_blank" class="btn btn-primary" id="btnBuy">Buy on Google Play</a>
       <a href="https://www.goodreads.com" target="_blank" class="btn btn-secondary" id="btnGoodreads">Goodreads</a>
@@ -134,7 +158,7 @@ footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.
 <section class="excerpt-section">
   <div class="verse-block">
     ಇಂದು ದೇಶ-ವಿಶೇಷಗಳ ಭಾಷೆಗಳಲ್ಲಿ ವಿಶ್ರುತವಾದ ಕೃತಿಗಳನ್ನು ಕನ್ನಡಕ್ಕೆ ತಂದುಕೊಳ್ಳುವ ಚಟುವಟಿಕೆ ಭರದಿಂದ ಸಾಗಿದೆ. ಇದು ಸ್ವಾಗತಾರ್ಹ. ಆದರೆ ಇಲ್ಲಿಯೂ ರೂಪಕಗಳ ಅನುವಾದ ವಿರಳವೇ ಆಗಿದೆ. ದಿಟ, ನಮ್ಮ ಸಂಸ್ಕೃತಿಗೆ ದೂರವಾದ ಸಾಹಿತ್ಯಕೃತಿಗಳನ್ನು ಓದಿಕೊಳ್ಳುವಷ್ಟು ಸುಲಭವಾಗಿ ಅಲ್ಲಿಯ ರೂಪಕಗಳನ್ನು ನಮ್ಮ ರಂಗಭೂಮಿಗೆ ತರಲೂ ಹಾಗೆ ತಂದದ್ದನ್ನು ಆಸ್ವಾದಿಸಲೂ ಕಷ್ಟವಿದೆ. ಇದನ್ನು ಮನಗಂಡೇ ನಮ್ಮ ನವೋದಯ ಪೂರ್ವದ ಲೇಖಕರು ರೂಪಾಂತರಗಳನ್ನು ತಂದರು. ಇದು ನಿಜಕ್ಕೂ ಸುವರ್ಣ ಮಧ್ಯಮ ಮಾರ್ಗ. ಆದರೆ ಈ ಹಾದಿಯಲ್ಲಿ ಹೆಜ್ಜೆ ಹಾಕುವವರು ಉಭಯ ಭಾಷೆಗಳ, ಉಭಯ ಸಂಸ್ಕೃತಿಗಳ ನಾಡಿಯ ಮಿಡಿತವನ್ನು ಬಲ್ಲವರಾಗಿರಬೇಕು. ಇಲ್ಲವಾದರೆ ವಿಕಾರಗಳೂ ಅವಾಂಛಿತ ವಿನೋದಗಳೂ ತಪ್ಪುವುದಿಲ್ಲ.
-    ಇದೀಗ ಓದುಗರ ಕೈಯಲ್ಲಿ ಇರುವುದು ಇಂಥ ಓರೆಕೋರೆಗಳಿಲ್ಲದ ಒಂದು ಸ್ತುತ್ಯರ್ಹ ರೂಪಕತ್ರಯ ರೂಪಾಂತರ. 
+    ಇದೀಗ ಓದುಗರ ಕೈಯಲ್ಲಿ ಇರುವುದು ಇಂಥ ಓರೆಕೋರೆಗಳಿಲ್ಲದ ಒಂದು ಸ್ತುತ್ಯರ್ಹ ರೂಪಕತ್ರಯ ರೂಪಾಂತರ.
     <br><br>
     <b>-ಶತಾವಧಾನಿ ಡಾ.ಆರ್. ಗಣೇಶ್</b>
   </div>
@@ -144,54 +168,77 @@ footer { text-align: center; color: var(--meta); margin-top: 24px; font-size: 0.
 <footer id="footerEl">Hosted on GitHub Pages</footer>
 
 <script>
+const NAV_SECTIONS = [
+  { en:"Compositions",      kn:"ರಚನೆಗಳು",       url:"https://hamsanandi.github.io/compositions/" },
+  { en:"Articles",          kn:"ಲೇಖನಗಳು",        url:"https://hamsanandi.github.io/articles/" },
+  { en:"Books",             kn:"ಪುಸ್ತಕಗಳು",      url:"https://hamsanandi.github.io/books/", current:true },
+  { en:"Metrical Poetry",   kn:"ಛಂದೋಬದ್ಧ ಕಾವ್ಯ", url:"https://hamsanandi.github.io/poetry/" },
+  { en:"Stage Productions", kn:"ರಂಗಪ್ರಯೋಗಗಳು",  url:"https://hamsanandi.github.io/stage-productions/" },
+  { en:"Gamaka Vachana",    kn:"ಗಮಕ ವಾಚನ",       url:"https://hamsanandi.github.io/gamaka-vachana/" },
+  { en:"Translations",      kn:"ಅನುವಾದಗಳು",      url:"https://hamsanandi.github.io/translations/" },
+  { en:"Reviews",           kn:"ವಿಮರ್ಶೆಗಳು",     url:"https://hamsanandi.github.io/reviews/" }
+];
+
+function renderNav(l) {
+  const navHome = document.getElementById('navHome');
+  navHome.textContent = l === 'kn' ? 'ಹಂಸಾನಂದಿ' : 'Hamsanandi';
+  navHome.className   = l === 'kn' ? 'nav-home kn' : 'nav-home';
+  const navLinks = document.getElementById('navLinks');
+  navLinks.innerHTML = '';
+  NAV_SECTIONS.forEach(sec => {
+    const a = document.createElement('a');
+    a.href        = sec.url;
+    a.textContent = sec[l];
+    a.className   = 'nav-link' + (l === 'kn' ? ' kn' : '') + (sec.current ? ' active-section' : '');
+    navLinks.appendChild(a);
+  });
+}
+
 const STR = {
   en: {
-    backText: "← Back to Books",
-    synopsis: "An engaging compilation of three stage plays adapted to Kannada from English. Each play is excitingly bulit for stage, as well of reading experience.",
-    buyText: "Buy on Google Play",
-    grText: "Goodreads",
+    synopsis:       "An engaging compilation of three stage plays adapted to Kannada from English. Each play is excitingly built for stage, as well as for reading experience.",
+    buyText:        "Buy on Google Play",
+    grText:         "Goodreads",
     excerptHeading: "Excerpt",
-    footer: "Hosted on GitHub Pages"
+    footer:         "Hosted on GitHub Pages"
   },
   kn: {
-    backText: "← ಪುಸ್ತಕಗಳ ಪುಟಕ್ಕೆ",
-    synopsis: "ಮೂರು ವಿಶಿಷ್ಟ ನಾಟಕಗಳ ಸಂಕಲನ. ಇಲ್ಲಿನ ಕಥಾವಸ್ತು ಮತ್ತು ಪಾತ್ರಚಿತ್ರಣಗಳು ರಂಗಭೂಮಿಯ ಸೌಂದರ್ಯವನ್ನು ಎತ್ತಿ ಹಿಡಿಯುತ್ತವೆ. ಓದಿಗೆ ಹಾಗೂ ರಂಗಪ್ರದರ್ಶನಕ್ಕೆ ಎರಡಕ್ಕೂ ಒಪ್ಪುವಂತೆ ಈ ನಾಟಕಗಳನ್ನು ಹೆಣೆಯಲಾಗಿದೆ.",
-    buyText: "ಗೂಗಲ್ ಪ್ಲೇನಲ್ಲಿ ಕೊಳ್ಳಿ",
-    grText: "ಗುಡ್‌ರೀಡ್ಸ್",
+    synopsis:       "ಮೂರು ವಿಶಿಷ್ಟ ನಾಟಕಗಳ ಸಂಕಲನ. ಇಲ್ಲಿನ ಕಥಾವಸ್ತು ಮತ್ತು ಪಾತ್ರಚಿತ್ರಣಗಳು ರಂಗಭೂಮಿಯ ಸೌಂದರ್ಯವನ್ನು ಎತ್ತಿ ಹಿಡಿಯುತ್ತವೆ. ಓದಿಗೆ ಹಾಗೂ ರಂಗಪ್ರದರ್ಶನಕ್ಕೆ ಎರಡಕ್ಕೂ ಒಪ್ಪುವಂತೆ ಈ ನಾಟಕಗಳನ್ನು ಹೆಣೆಯಲಾಗಿದೆ.",
+    buyText:        "ಗೂಗಲ್ ಪ್ಲೇನಲ್ಲಿ ಕೊಳ್ಳಿ",
+    grText:         "ಗುಡ್‌ರೀಡ್ಸ್",
     excerptHeading: "ಬೆನ್ನುಡಿಯಿಂದ",
-    footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ"
+    footer:         "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ"
   }
 };
 
 function applyLocalization(l) {
-  // Fallback to English if no valid language key matches
-  const langKey = (l === 'kn' || l === 'en') ? l : 'en';
-  const s = STR[langKey];
-  
-  document.getElementById('navBack').querySelector('a').textContent = s.backText;
-  document.getElementById('navBack').className = 'nav-back' + (langKey === 'kn' ? ' kn' : '');
-  
-  document.getElementById('bookSynopsis').textContent = s.synopsis;
-  document.getElementById('bookSynopsis').className = 'book-synopsis' + (langKey === 'kn' ? ' kn' : '');
-  
-  document.getElementById('btnBuy').textContent = s.buyText;
-  document.getElementById('btnBuy').className = 'btn btn-primary' + (langKey === 'kn' ? ' kn-btn' : '');
-  
-  document.getElementById('btnGoodreads').textContent = s.grText;
-  document.getElementById('btnGoodreads').className = 'btn btn-secondary' + (langKey === 'kn' ? ' kn-btn' : '');
-  
-  document.getElementById('excerptHeading').textContent = s.excerptHeading;
-  document.getElementById('excerptHeading').className = 'section-heading' + (langKey === 'kn' ? ' kn' : '');
-  
-  document.getElementById('footerEl').textContent = s.footer;
+  document.getElementById('htmlRoot').lang = l === 'kn' ? 'kn' : 'en';
+  document.getElementById('btnEN').classList.toggle('active', l === 'en');
+  document.getElementById('btnKN').classList.toggle('active', l === 'kn');
+  renderNav(l);
+
+  const s = STR[l];
+  document.getElementById('bookSynopsis').textContent    = s.synopsis;
+  document.getElementById('bookSynopsis').className      = 'book-synopsis' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('btnBuy').textContent          = s.buyText;
+  document.getElementById('btnBuy').className            = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnGoodreads').textContent    = s.grText;
+  document.getElementById('btnGoodreads').className      = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('excerptHeading').textContent  = s.excerptHeading;
+  document.getElementById('excerptHeading').className    = 'section-heading' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('footerEl').textContent        = s.footer;
+  document.getElementById('footerEl').className          = l === 'kn' ? 'kn' : '';
 }
 
-// Extract parameter and force it to completely lowercase to prevent casing errors
-const urlParams = new URLSearchParams(window.location.search);
-const langParam = urlParams.get('lang');
-const sanitizedLang = langParam ? langParam.toLowerCase() : 'en';
+document.getElementById('langToggle').addEventListener('click', e => {
+  const btn = e.target.closest('.lang-btn');
+  if (!btn) return;
+  applyLocalization(btn.id === 'btnKN' ? 'kn' : 'en');
+});
 
-applyLocalization(sanitizedLang);
+// Bootstrap — read ?lang=kn from URL or default to EN
+const urlParams = new URLSearchParams(window.location.search);
+applyLocalization(urlParams.get('lang') === 'kn' ? 'kn' : 'en');
 </script>
 </body>
 </html>
