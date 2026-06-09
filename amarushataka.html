@@ -268,6 +268,10 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
     <div class="video-container"><iframe src="https://www.youtube.com/embed/tx0VdqhEnXU" allowfullscreen></iframe></div>
     <div class="media-info"><span class="media-label" id="lblMedia11"></span><div class="media-title" id="titleMedia11"></div></div>
   </div>
+  <div class="media-card">
+    <div class="video-container"><iframe src="https://www.youtube.com/embed/FttxIRvuDFQ" allowfullscreen></iframe></div>
+    <div class="media-info"><span class="media-label" id="lblMedia12"></span><div class="media-title" id="titleMedia12"></div></div>
+  </div>
 </div>
 
 <hr class="section-divider">
@@ -314,6 +318,7 @@ const STR = {
     lbl5: "Commentary",         lbl6: "Recitation",
     lbl7: "Recitation",         lbl8: "Podcast",
     lbl9: "Recitation",         lbl10: "Literary Discussion", lbl11: "Recitation",
+    lbl12: "Literary Discussion",
     t1:  "Shatavadhani Dr R Ganesh speaks about Amarushataka",
     t2:  "A verse from Amarushataka in Gamaka style",
     t3:  "\u201cNayikas & Nayakas of Amarushataka\u201d in the light of Natya Shastra",
@@ -323,8 +328,9 @@ const STR = {
     t7:  "Yatah Kim Na Milanti \u2014 verse recitation from Amarushataka",
     t8:  "Thale-Harate Kannada Podcast Ep. 12: Amaru-Shataka",
     t9:  "A verse from Amaru Shataka (recitation performance)",
-    t10: "Amarushataka on Vichitramanjari",
+    t10: "A discussion about Amarushataka",
     t11: "Shunyam Vasagrham \u2014 classical metric Kannada rendering",
+    t12: "Amarushataka on Vichitramanjari",
     footer: "Hosted on GitHub Pages",
     /* ── REVIEWS ──────────────────────────────────────────────────────
        Each object: { text, source, url }
@@ -359,6 +365,7 @@ const STR = {
     lbl5: "ಹೆಚ್ಚಿನ ವಿವರಣೆ",     lbl6: "ಪದ್ಯ ವಾಚನ",
     lbl7: "ಪದ್ಯ ವಾಚನ",           lbl8: "ಪೋಡ್‌ಕಾಸ್ಟ್‌ಗಳು",
     lbl9: "ಪದ್ಯ ವಾಚನ",           lbl10: "ಸಾಹಿತ್ಯಿಕ ಸಂವಾದ", lbl11: "ಪದ್ಯ ವಾಚನ",
+    lbl12: "ಸಾಹಿತ್ಯಿಕ ಸಂವಾದ",
     t1:  "ಶತಾವಧಾನಿ ಡಾ. ಆರ್ ಗಣೇಶ್ ಅವರಿಂದ ಅಮರುಶತಕದ ಕುರಿತು ವಿಶೇಷ ಭಾಷಣ",
     t2:  "ಅಮರುಶತಕದಿಂದ ಆಯ್ದ ಒಂದು ಪದ್ಯದ ಗಮಕ ವಾಚನ",
     t3:  "ನಾಟ್ಯಶಾಸ್ತ್ರದ ಚೌಕಟ್ಟಿನಲ್ಲಿ ಅಮರುಶತಕದ ನಾಯಕ-ನಾಯಕಿಯರ ವಿಶ್ಲೇಷಣೆ",
@@ -368,8 +375,9 @@ const STR = {
     t7:  "ಅಮರುಶತಕದಿಂದ 'ಯಾತಾಃ ಕಿಂ ನ ಮಿಲಂತಿ' ಮುಕ್ತಕದ ಭಾವಪೂರ್ಣ ಗಾಯನ",
     t8:  "ತಲೆ-ಹರಟೆ ಕನ್ನಡ ಪಾಡ್‌ಕಾಸ್ಟ್ ಸಂಚಿಕೆ ೧೨: ನೂರು ಶೃಂಗಾರ ಹೃದ್ಯ ಪದ್ಯಗಳು",
     t9:  "ಅಮರುಶತಕದ ಕಾವ್ಯ ಮುಕ್ತಕದ ಮತ್ತೊಂದು ರಂಗ ಪ್ರಸ್ತುತಿ ಗಾಯನ",
-    t10: "ವಿಚಿತ್ರಮಂಜರಿಯಲ್ಲಿ ಅಮರುಶತಕ",
+    t10: "ಅಮರುಶತಕದ ಕುರಿತು ಒಂದು ಸಂವಾದ",
     t11: "ಅಮರುಶತಕದ ಪ್ರಸಿದ್ಧ 'ಶೂನ್ಯಂ ವಾಸಗೃಹಂ' ಶ್ಲೋಕದ ಛಂದೋಬದ್ಧ ಕನ್ನಡ ಭಾವಾನುವಾದ",
+    t12: "ವಿಚಿತ್ರಮಂಜರಿಯಲ್ಲಿ ಅಮರುಶತಕ",
     footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ",
     reviews: [
       {
@@ -441,7 +449,7 @@ function applyLocalization(l) {
     if (srcEl)  { srcEl.innerHTML = r.url ? `<a href="${r.url}" target="_blank">${r.source}</a>` : r.source; }
   });
 
-  for (let i = 1; i <= 11; i++) {
+  for (let i = 1; i <= 12; i++) {
     const lblEl   = document.getElementById('lblMedia'   + i);
     const titleEl = document.getElementById('titleMedia' + i);
     if (lblEl)   { lblEl.textContent   = s['lbl' + i] || ''; lblEl.className   = 'media-label' + (l === 'kn' ? ' kn' : ''); }
