@@ -120,11 +120,13 @@ body {
   font-size: 3rem; color: var(--border-light);
   position: absolute; top: 6px; left: 14px; line-height: 1;
 }
+.review-card.has-image::before { display: none; }
 .review-text { font-size: 0.93em; font-style: italic; line-height: 1.65; color: var(--text); padding-top: 18px; }
 .review-text.kn { font-family: 'Noto Sans Kannada', sans-serif; font-style: normal; font-size: 0.85em; }
 .review-source { margin-top: 10px; font-size: 0.78em; color: var(--meta); font-family: 'Cinzel', serif; letter-spacing: 0.06em; }
 .review-source a { color: var(--gold-dim); text-decoration: none; }
 .review-source a:hover { text-decoration: underline; color: var(--gold); }
+.review-img { width: 100%; border-radius: 4px; margin-bottom: 10px; display: block; }
 
 /* ── Media Grid Layout ── */
 .media-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 0 20px; }
@@ -202,13 +204,6 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
   <div id="dynamicVerse" class="verse-block"></div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════════════════════
-     REVIEWS SECTION
-     HOW TO ADD A REVIEW:
-     1. Add entries to STR.en.reviews[] and STR.kn.reviews[] (same order).
-     2. Copy a review-card block below and increment the id numbers.
-     Fields: { text, source, url }  — url is optional.
-     ═══════════════════════════════════════════════════════════════════ -->
 <div class="section-heading" id="reviewsHeading">Reviews &amp; Responses</div>
 <div class="reviews-grid" id="reviewsGrid">
   <div class="review-card" id="review1">
@@ -218,6 +213,15 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
   <div class="review-card" id="review2">
     <div class="review-text" id="reviewText2"></div>
     <div class="review-source" id="reviewSource2"></div>
+  </div>
+  <div class="review-card" id="review3">
+    <div class="review-text" id="reviewText3"></div>
+    <div class="review-source" id="reviewSource3"></div>
+  </div>
+  <div class="review-card has-image" id="review4">
+    <img src="covers/shashank-parashar-review.jpg" alt="Review by Shashank Parashar" class="review-img" onerror="this.style.display='none';">
+    <div class="review-text" id="reviewText4"></div>
+    <div class="review-source" id="reviewSource4"></div>
   </div>
   <!-- ADD NEW REVIEW CARDS ABOVE THIS LINE (copy block above, increment ids) -->
 </div>
@@ -332,15 +336,9 @@ const STR = {
     t11: "Shunyam Vasagrham \u2014 classical metric Kannada rendering",
     t12: "Amarushataka on Vichitramanjari",
     footer: "Hosted on GitHub Pages",
-    /* ── REVIEWS ──────────────────────────────────────────────────────
-       Each object: { text, source, url }
-       url is optional — omit or set "" for plain text source.
-       To add a review: append here AND in STR.kn.reviews[], then add
-       a matching .review-card block in the HTML above.
-       ────────────────────────────────────────────────────────────── */
     reviews: [
       {
-        text:   "AmaruShataka Book review on Book Brahma: by M.R.Dattathri",
+        text:   "AmaruShataka Book review on Book Brahma: by Kannada novelist M.R.Dattathri",
         source: "BookBrahma",
         url:    "https://www.bookbrahma.com/news/amarushataka-samskruta-mula-amaruka-kannadakke-ramaprasad-k-v"
       },
@@ -348,6 +346,17 @@ const STR = {
         text:   "An Introduction to Amarushataka",
         source: "Indica Today",
         url:    "https://www.indica.today/bharatiya-languages/%e0%b2%85%e0%b2%ae%e0%b2%b0%e0%b3%81%e0%b2%95-%e0%b2%ae%e0%b3%81%e0%b2%95%e0%b3%8d%e0%b2%a4%e0%b2%95-%e0%b2%87%e0%b2%a4%e0%b2%bf%e0%b2%b9%e0%b2%be%e0%b2%b8-%e0%b2%b8%e0%b2%82%e0%b2%b8%e0%b3%8d/"
+      },
+      {
+        text:   "Amarushataka — a review by a Kannada bibliophile",
+        source: "Kannada Bibliophile",
+        url:    ""
+      },
+      {
+        text:   "Amaru Shataka book review by Kannada bibliophile Shashank Parashar",
+        source: "Shashank Parashar",
+        url:    "amaruka-review-shashank.jpg",
+        image:  "covers/shashank-parashar-review.jpg"
       }
     ]
   },
@@ -381,7 +390,7 @@ const STR = {
     footer: "GitHub Pages ನಲ್ಲಿ ಪ್ರಕಾಶಿತ",
     reviews: [
       {
-        text:   "ಅಮರು ಶತಕ: ಎಂ ಆರ್ ದತ್ತಾತ್ರಿ ಅವರು ಬರೆದ ಪುಸ್ತಕ ವಿಮರ್ಶೆ",
+        text:   "ಅಮರು ಶತಕ: ಕನ್ನಡ ಕಾದಂಬರಿಕಾರ ಎಂ.ಆರ್. ದತ್ತಾತ್ರಿ ಅವರು ಬರೆದ ಪುಸ್ತಕ ವಿಮರ್ಶೆ",
         source: "BookBrahma",
         url:    "https://www.bookbrahma.com/news/amarushataka-samskruta-mula-amaruka-kannadakke-ramaprasad-k-v"
       },
@@ -389,6 +398,17 @@ const STR = {
         text:   "ಅಮರುಶತಕದೊಳಗೊಂದು ಇಣುಕುನೋಟ",
         source: "Indica Today",
         url:    "https://www.indica.today/bharatiya-languages/%e0%b2%85%e0%b2%ae%e0%b2%b0%e0%b3%81%e0%b2%95-%e0%b2%ae%e0%b3%81%e0%b2%95%e0%b3%8d%e0%b2%a4%e0%b2%95-%e0%b2%87%e0%b2%a4%e0%b2%bf%e0%b2%b9%e0%b2%be%e0%b2%b8-%e0%b2%b8%e0%b2%82%e0%b2%b8%e0%b3%8d/"
+      },
+      {
+        text:   "ಅಮರುಶತಕ — ಒಬ್ಬ ಕನ್ನಡ ಪುಸ್ತಕ ಪ್ರೇಮಿಯ ವಿಮರ್ಶೆ",
+        source: "Kannada Bibliophile",
+        url:    ""
+      },
+      {
+        text:   "ಕನ್ನಡ ಪುಸ್ತಕ ಪ್ರೇಮಿ ಶಶಾಂಕ್ ಪರಾಶರ್ ಅವರ ಅಮರು ಶತಕ ಪುಸ್ತಕ ವಿಮರ್ಶೆ",
+        source: "Shashank Parashar",
+        url:    "amaruka-review-shashank.jpg",
+        image:  "covers/shashank-parashar-review.jpg"
       }
     ]
   }
@@ -442,7 +462,7 @@ function applyLocalization(l) {
   document.getElementById('mediaHeading').className     = 'section-heading' + (l === 'kn' ? ' kn' : '');
 
   s.reviews.forEach((r, i) => {
-    const n     = i + 1;
+    const n      = i + 1;
     const textEl = document.getElementById('reviewText'   + n);
     const srcEl  = document.getElementById('reviewSource' + n);
     if (textEl) { textEl.textContent = r.text; textEl.className = 'review-text' + (l === 'kn' ? ' kn' : ''); }
