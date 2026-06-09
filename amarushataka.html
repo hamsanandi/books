@@ -194,6 +194,7 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
     <div class="action-hub" id="actionHub">
       <a href="https://sahityaprakashan.com/product/amaru-shataka/" target="_blank" class="btn btn-primary" id="btnBuy">Buy from Sahitya Prakashana</a>
       <a href="https://www.exoticindiaart.com/book/details/amaru-shataka-kannada-had432/" target="_blank" class="btn btn-primary" id="btnBuyExotic">Buy on Exotic India</a>
+      <a href="https://imojo.in/dqO4lr" target="_blank" class="btn btn-primary" id="btnBuyAmulya">Buy from Amulya Pustaka</a>
       <a href="https://www.goodreads.com/en/book/show/59741712" target="_blank" class="btn btn-secondary" id="btnGoodreads">Goodreads Page</a>
     </div>
   </div>
@@ -313,6 +314,7 @@ const STR = {
     synopsis: "A metrical translation of Amaru's evocative Sanskrit verses, with ample notes. This work meticulously renders the classical 'Shringara' nuances into Kannada while preserving the architectural beauty of the original quatrains.",
     buyText: "Buy from Sahitya Prakashana",
     buyExoticText: "Buy on Exotic India",
+    amulyaText: "Buy from Amulya Pustaka",
     grText: "Goodreads Profile",
     sampleHeading: "Look Inside — Sample Verses",
     reviewsHeading: "Reviews & Responses",
@@ -365,6 +367,7 @@ const STR = {
     synopsis: "ಅಮರು ಕವಿಯ ಶೃಂಗಾರ ಪ್ರಧಾನ ಸಂಸ್ಕೃತ ಮುಕ್ತಕಗಳಿಗೆ ಛಂದೋಬದ್ಧ ಕನ್ನಡ ಅನುವಾದ ಮತ್ತು ಸವಿಸ್ತಾರವಾದ ವಿವರಣೆ. ಈ ಕೃತಿಯು ಮೂಲ ಶ್ಲೋಕಗಳ ಭಾವಸೌಂದರ್ಯ ಹಾಗೂ ರಚನಾತ್ಮಕ ವಿನ್ಯಾಸವನ್ನು ಕನ್ನಡದ ವಿಶಿಷ್ಟ ಕಾವ್ಯರೂಪದಲ್ಲಿ ಕಟ್ಟಿಕೊಡುತ್ತದೆ.",
     buyText: "ಸಾಹಿತ್ಯ ಪ್ರಕಾಶನದಲ್ಲಿ ಕೊಳ್ಳಿ",
     buyExoticText: "ಎಕ್ಸೋಟಿಕ್ ಇಂಡಿಯಾದಲ್ಲಿ ಕೊಳ್ಳಿ",
+    amulyaText: "ಅಮೂಲ್ಯ ಪುಸ್ತಕದಲ್ಲಿ ಕೊಳ್ಳಿ",
     grText: "ಗುಡ್‌ರೀಡ್ಸ್ ಪುಟ",
     sampleHeading: "ಅಮರುಶತಕದೊಳಗೆ ಒಂದು ಇಣುಕುನೋಟ",
     reviewsHeading: "ವಿಮರ್ಶೆಗಳು ಮತ್ತು ಪ್ರತಿಕ್ರಿಯೆಗಳು",
@@ -451,6 +454,8 @@ function applyLocalization(l) {
   document.getElementById('btnBuy').className         = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
   document.getElementById('btnBuyExotic').textContent = s.buyExoticText;
   document.getElementById('btnBuyExotic').className   = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnBuyAmulya').textContent = s.amulyaText;
+  document.getElementById('btnBuyAmulya').className   = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
   document.getElementById('btnGoodreads').textContent = s.grText;
   document.getElementById('btnGoodreads').className   = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
 
