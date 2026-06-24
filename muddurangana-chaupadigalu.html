@@ -93,6 +93,10 @@ body {
 }
 .section-heading.kn { font-family: 'Noto Sans Kannada', sans-serif; font-size: 0.88rem; letter-spacing: 0.05em; text-transform: none; }
 
+/* ── Article Links (Foreword / End Note) ── */
+.article-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; padding: 0 20px; }
+.article-author { color: var(--gold); font-weight: 600; }
+
 /* ── Sample Verses Section ── */
 .sample-section {
   max-width: 580px; margin: 0 auto; padding: 20px;
@@ -165,6 +169,13 @@ footer.kn { font-family: 'Noto Sans Kannada', sans-serif; }
       <a href="https://www.goodreads.com/book/show/246352839" target="_blank" class="btn btn-secondary" id="btnGoodreads">Goodreads Page</a>
     </div>
   </div>
+</section>
+
+<!-- ── Article links: Foreword & End Note (placeholders — point href at real articles) ── -->
+<div class="section-heading" id="articlesHeading">Articles</div>
+<section class="article-links" id="articleLinks">
+  <a href="munnudi_chaupadigalu.html" class="btn btn-secondary" id="btnForeword">Foreword</a>
+  <a href="bennudi_chaupadigalu.html" class="btn btn-secondary" id="btnEndNote">End Note</a>
 </section>
 
 <div class="section-heading" id="sampleHeading">Look Inside — Sample Verses</div>
@@ -285,6 +296,11 @@ const STR = {
     synopsis:     "An elegant volume of standalone quatrains following traditional prosodic meters. Written entirely in Kannada, these compositions blend classical aesthetics, structural geometry, and reflective philosophy to delight literature enthusiasts.",
     buyText:      "Buy on Amazon",
     grText:       "Goodreads Profile",
+    articlesHeading:"Articles",
+    forewordPrefix: "Foreword by ",
+    forewordAuthor: "Vidwan Padekallu Vishnu Bhattaru",
+    endNotePrefix:  "End Note by ",
+    endNoteAuthor:  "Dr Na. Someshwara",
     sampleHeading:"Look Inside — Sample Verses",
     mediaHeading: "Media, Speeches & Reviews",
     lbl1: "Poem Rendition", lbl2: "Talk", lbl3: "Book Launch", lbl4: "Talk",
@@ -298,6 +314,11 @@ const STR = {
     synopsis:     "ಸಾಂಪ್ರದಾಯಿಕ ಶೈಲಿ ಹಾಗೂ ವಿಶಿಷ್ಟ ಛಂದೋನಿಯಮಗಳಿಗೆ ಅನುಗುಣವಾಗಿ ಪ್ರಕಟಿತಗೊಂಡ ಕಾವ್ಯ ಸಂಪುಟ. ನಾಲ್ಕು ಸಾಲುಗಳ ವಿಶಿಷ್ಟ ಚೌಪದಿ ಪ್ರಕಾರದ ಈ ರಚನೆಗಳು ಸಾಹಿತ್ಯಾಸಕ್ತರಿಗೆ ತತ್ವಚಿಂತನೆ ಹಾಗೂ ಕಾವ್ಯ ಸೌಂದರ್ಯದ ರಸದೌತಣವನ್ನು ನೀಡುತ್ತವೆ.",
     buyText:      "ಅಮೆಜಾನ್‌ನಲ್ಲಿ ಕೊಳ್ಳಿ",
     grText:       "ಗುಡ್‌ರೀಡ್ಸ್ ಪುಟ",
+    articlesHeading:"ಲೇಖನಗಳು",
+    forewordPrefix: "ಮುನ್ನುಡಿ — ",
+    forewordAuthor: "ವಿದ್ವಾನ್ ಪಾದೇಕಲ್ಲು ವಿಷ್ಣುಭಟ್ಟರು",
+    endNotePrefix:  "ಬೆನ್ನುಡಿ — ",
+    endNoteAuthor:  "ಡಾ. ನಾ. ಸೋಮೇಶ್ವರ",
     sampleHeading:"ಪುಸ್ತಕದ ಒಳನೋಟ — ಆಯ್ದ ಪದ್ಯಗಳು",
     mediaHeading: "ದೃಶ್ಯಾವಳಿಗಳು, ಭಾಷಣಗಳು ಮತ್ತು ವಿಮರ್ಶೆಗಳು",
     lbl1: "ಪದ್ಯ ಗಾಯನ", lbl2: "ಮಾತುಗಳು", lbl3: "ಪುಸ್ತಕ ಬಿಡುಗಡೆ", lbl4: "ಮಾತುಗಳು",
@@ -322,6 +343,12 @@ function applyLocalization(l) {
   document.getElementById('btnBuy').className          = 'btn btn-primary' + (l === 'kn' ? ' kn-btn' : '');
   document.getElementById('btnGoodreads').textContent  = s.grText;
   document.getElementById('btnGoodreads').className    = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('articlesHeading').textContent = s.articlesHeading;
+  document.getElementById('articlesHeading').className   = 'section-heading' + (l === 'kn' ? ' kn' : '');
+  document.getElementById('btnForeword').innerHTML    = s.forewordPrefix + '<span class="article-author">' + s.forewordAuthor + '</span>';
+  document.getElementById('btnForeword').className      = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
+  document.getElementById('btnEndNote').innerHTML      = s.endNotePrefix + '<span class="article-author">' + s.endNoteAuthor + '</span>';
+  document.getElementById('btnEndNote').className       = 'btn btn-secondary' + (l === 'kn' ? ' kn-btn' : '');
   document.getElementById('sampleHeading').textContent = s.sampleHeading;
   document.getElementById('sampleHeading').className   = 'section-heading' + (l === 'kn' ? ' kn' : '');
   document.getElementById('mediaHeading').textContent  = s.mediaHeading;
